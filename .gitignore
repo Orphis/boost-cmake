@@ -1,0 +1,5 @@
+*.sw?
+*.7z
+*.tmp
+build
+boost/
