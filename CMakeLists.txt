@@ -14,6 +14,10 @@ else()
   set(DOWNLOAD_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}")
 endif()
 
+if(BOOST_SOURCE AND NOT EXISTS "${BOOST_SOURCE}/boost/version.hpp")
+  message(FATAL_ERROR "Folder ${BOOST_SOURCE} points to an invalid Boost source folder")
+endif()
+
 if(NOT BOOST_SOURCE OR NOT EXISTS "${BOOST_SOURCE}")
   set(BOOST_URL "http://downloads.sourceforge.net/project/boost/boost/1.62.0/boost_1_62_0.7z")
   set(BOOST_URL_SHA256 "b91c2cda8bee73ea613130e19e72c9589e9ef0357c4c5cc5f7523de82cce11f7")
