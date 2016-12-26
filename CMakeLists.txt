@@ -157,7 +157,7 @@ set(BOOST_LIBS
   serialization
   signals
   system
-  test
+  unit_test_framework
   thread
   timer
   type_erasure
