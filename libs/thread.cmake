@@ -20,10 +20,10 @@ _add_boost_lib(
   LINK Boost::chrono
 )
 if(NOT USE_WINDOWS)
-  target_compile_definitions(Boost_thread PRIVATE
+  target_compile_definitions(boost_thread PRIVATE
     BOOST_THREAD_POSIX
   )
 endif()
 if(USE_LINUX)
-  target_link_libraries(Boost_thread PUBLIC -pthread)
+  target_link_libraries(boost_thread PUBLIC -pthread)
 endif()
