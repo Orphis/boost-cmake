@@ -9,7 +9,7 @@ _add_boost_lib(
     BOOST_SYSTEM_NO_DEPRECATED
 )
 if(USE_LINUX)
-  target_link_libraries(Boost_chrono PUBLIC
+  target_link_libraries(boost_chrono PUBLIC
     -lrt
     -pthread
   )
