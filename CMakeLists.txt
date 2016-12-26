@@ -43,7 +43,7 @@ if(NOT BOOST_SOURCE OR NOT EXISTS "${BOOST_SOURCE}")
          LOG download_log
          SHOW_PROGRESS
     )
-    if(download_status)
+    if(download_status[0])
       message(FATAL_ERROR "Download failed. Status: ${download_status}\nLog: ${download_log}")
     endif()
     file(RENAME "${DOWNLOAD_PATH}.tmp" "${DOWNLOAD_PATH}")
