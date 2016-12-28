@@ -148,7 +148,7 @@ set(BOOST_LIBS
   coroutine
   date_time
   exception
-  #fiber # depends on context
+  fiber
   filesystem
   graph
   #graph_parallel # depends on mpi
