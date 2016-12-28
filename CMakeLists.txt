@@ -156,7 +156,7 @@ set(BOOST_LIBS
   iostreams
   #locale # depends on ICU or other external libraries
   #log # a bit complex and some platform specific setup
-  #math
+  math
   #mpi # partial dependency on python
   program_options
   #python # complex module
