@@ -144,9 +144,8 @@ set(BOOST_LIBS
   atomic
   chrono
   container
-  #coroutine # depends on context
-  #coroutine2 # depends on context
   context
+  coroutine
   date_time
   exception
   #fiber # depends on context
