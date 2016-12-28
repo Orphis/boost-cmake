@@ -151,12 +151,12 @@ set(BOOST_LIBS
   fiber
   filesystem
   graph
-  #graph_parallel # depends on mpi
   iostreams
   #locale # depends on ICU or other external libraries
   #log # a bit complex and some platform specific setup
   math
-  #mpi # partial dependency on python
+  mpi
+  graph_parallel # depends on mpi, so needs to be put after it
   program_options
   #python # complex module
   random
