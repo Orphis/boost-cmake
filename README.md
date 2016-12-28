@@ -1,3 +1,5 @@
+# Boost CMake [![Build Status](https://travis-ci.org/Orphis/boost-cmake.svg?branch=master)](https://travis-ci.org/Orphis/boost-cmake)
+
 ## Synopsis
 
 Easy Boost integration in CMake projects!
