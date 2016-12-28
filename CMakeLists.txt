@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.0.0)
 project(Boost-CMake)
 
 option(BOOST_DOWNLOAD_TO_BINARY_DIR "Prefer downloading Boost to the binary directory instead of source directory" OFF)
+set(BOOST_URL "http://downloads.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.7z")
+set(BOOST_URL_SHA256 "25db3956a8d58187ac7a0702cc917e9bab47ff90baafc35e4e789dca1ce5f423")
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL "${CMAKE_SOURCE_DIR}")
   message("-- Standalone mode detected")
@@ -13,17 +15,22 @@ if(BOOST_DOWNLOAD_TO_BINARY_DIR)
 else()
   set(DOWNLOAD_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}")
 endif()
+set(DOWNLOAD_PATH "${DOWNLOAD_PREFIX}/boost.7z")
+set(EXTRACT_PATH "${DOWNLOAD_PREFIX}/boost")
 
 if(BOOST_SOURCE AND NOT EXISTS "${BOOST_SOURCE}/boost/version.hpp")
   message(FATAL_ERROR "Folder ${BOOST_SOURCE} points to an invalid Boost source folder")
 endif()
 
+if(BOOST_LOCAL_SHA256 AND NOT BOOST_LOCAL_SHA256 STREQUAL "${BOOST_URL_SHA256}")
+  message("New Boost version detected, removing older one")
+  file(REMOVE_RECURSE "${EXTRACT_PATH}")
+  file(REMOVE "${DOWNLOAD_PATH}")
+  unset(BOOST_LOCAL_SHA256 CACHE)
+  unset(BOOST_SOURCE CACHE)
+endif()
+
 if(NOT BOOST_SOURCE OR NOT EXISTS "${BOOST_SOURCE}")
-  set(BOOST_URL "http://downloads.sourceforge.net/project/boost/boost/1.62.0/boost_1_62_0.7z")
-  set(BOOST_URL_SHA256 "b91c2cda8bee73ea613130e19e72c9589e9ef0357c4c5cc5f7523de82cce11f7")
-
-  set(DOWNLOAD_PATH "${DOWNLOAD_PREFIX}/boost.7z")
-
   # Check existing file
   if(EXISTS "${DOWNLOAD_PATH}")
     file(SHA256 "${DOWNLOAD_PATH}" LOCAL_SHA256)
@@ -52,7 +59,8 @@ if(NOT BOOST_SOURCE OR NOT EXISTS "${BOOST_SOURCE}")
     file(RENAME "${DOWNLOAD_PATH}.tmp" "${DOWNLOAD_PATH}")
   endif()
 
-  set(EXTRACT_PATH "${DOWNLOAD_PREFIX}/boost")
+  set(BOOST_LOCAL_SHA256 "${BOOST_URL_SHA256}" CACHE STRING "Current SHA256 of Boost archive used" FORCE)
+
   if(NOT IS_DIRECTORY "${EXTRACT_PATH}")
     message("-- Extracting Boost archive...")
     if(EXISTS "${EXTRACT_PATH}.tmp")
