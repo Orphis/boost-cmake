@@ -144,23 +144,22 @@ set(BOOST_LIBS
   atomic
   chrono
   container
-  context
-  coroutine
-  coroutine2
+  #context # complex ASM selection
+  #coroutine # depends on context
+  #coroutine2 # depends on context
   date_time
   exception
-  fiber
+  #fiber # depends on context
   filesystem
   graph
-  graph_parallel
+  #graph_parallel # depends on mpi
   iostreams
-  locale
-  log
-  math
-  metaparse
-  mpi
+  #locale # depends on ICU or other external libraries
+  #log # a bit complex and some platform specific setup
+  #math
+  #mpi # partial dependency on python
   program_options
-  python
+  #python # complex module
   random
   regex
   serialization
@@ -174,7 +173,7 @@ set(BOOST_LIBS
 )
 
 foreach(lib ${BOOST_LIBS})
-  include("libs/${lib}.cmake" OPTIONAL)
+  include("libs/${lib}.cmake")
 endforeach()
 
 # Compilation options required by all platforms
