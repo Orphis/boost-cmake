@@ -5,12 +5,16 @@ option(BOOST_DOWNLOAD_TO_BINARY_DIR "Prefer downloading Boost to the binary dire
 set(BOOST_URL "http://downloads.sourceforge.net/project/boost/boost/1.63.0/boost_1_63_0.7z")
 set(BOOST_URL_SHA256 "25db3956a8d58187ac7a0702cc917e9bab47ff90baafc35e4e789dca1ce5f423")
 
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/Modules)
+
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL "${CMAKE_SOURCE_DIR}")
   message("-- Standalone mode detected")
   set(BOOST_STANDALONE ON)
   set(CMAKE_CXX_STANDARD 11)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
   set(CMAKE_CXX_EXTENSIONS OFF)
+
+  include(ccache)
 endif()
 
 if(BOOST_DOWNLOAD_TO_BINARY_DIR)
@@ -96,7 +100,7 @@ set(BOOST_VERSION "${BOOST_VERSION_MAJOR}.${BOOST_VERSION_MINOR}.${BOOST_VERSION
 message("-- Boost found: ${BOOST_VERSION} ${BOOST_SOURCE}")
 
 # Basic platform detection
-include(CheckPreprocessor.cmake)
+include(CheckPreprocessor)
 check_preprocessor(USE_LINUX __linux__)
 check_preprocessor(USE_WINDOWS _WIN32)
 check_preprocessor(USE_APPLE __APPLE__)
