@@ -60,8 +60,8 @@ travis_script() {
     elif [ "$BUILD_TARGET" = "macOS" ]; then
         cmake .. -GNinja
     elif [ "$BUILD_TARGET" = "iOS" ]; then
-        echo "iOS not implemented"
-        exit 0
+        cmake .. -GNinja \
+                 -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchains/ios.cmake
     fi
 
     ninja -v
