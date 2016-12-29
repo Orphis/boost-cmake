@@ -11,4 +11,6 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/filesystem/src/windows_file_codecvt.cpp
   DEFINE_PRIVATE
     BOOST_FILESYSTEM_STATIC_LINK=1
+  LINK
+    Boost::system
 )
