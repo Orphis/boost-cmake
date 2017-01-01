@@ -17,7 +17,9 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/thread/src/future.cpp
   DEFINE_PRIVATE
     BOOST_THREAD_BUILD_LIB=1
-  LINK Boost::chrono
+  LINK
+    Boost::chrono
+    Boost::system
 )
 if(NOT USE_WINDOWS)
   target_compile_definitions(Boost_thread PRIVATE
