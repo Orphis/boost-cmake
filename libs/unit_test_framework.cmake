@@ -16,6 +16,7 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/test/src/unit_test_main.cpp
     ${BOOST_SOURCE}/libs/test/src/unit_test_monitor.cpp
     ${BOOST_SOURCE}/libs/test/src/unit_test_parameters.cpp
+    ${BOOST_SOURCE}/libs/test/src/junit_log_formatter.cpp
     ${BOOST_SOURCE}/libs/test/src/xml_log_formatter.cpp
     ${BOOST_SOURCE}/libs/test/src/xml_report_formatter.cpp
 )
