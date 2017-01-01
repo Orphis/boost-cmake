@@ -31,7 +31,6 @@ else()
     ${CMAKE_CURRENT_LIST_DIR}/context/ontop_combined.S
     ${BOOST_SOURCE}/libs/context/src/posix/stack_traits.cpp
   )
-else()
   enable_language(ASM)
 endif()
 
@@ -41,5 +40,5 @@ _add_boost_lib(
     ${context_srcs}
   DEFINE_PRIVATE
     BOOST_CONTEXT_SOURCE=1
-    BOOST_CONTEXT_EXPORT=
+    BOOST_CONTEXT_EXPORT
 )
