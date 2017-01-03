@@ -10,7 +10,7 @@
 #elif defined(__linux__)
   #if defined(__arm__)
     #include "libs/context/src/asm/ontop_arm_aapcs_elf_gas.S"
-  #elif defined(__arm64__)
+  #elif defined(__aarch64__)
     #include "libs/context/src/asm/ontop_arm64_aapcs_elf_gas.S"
   #elif defined(__i386__)
     #include "libs/context/src/asm/ontop_i386_sysv_elf_gas.S"

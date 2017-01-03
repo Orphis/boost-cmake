@@ -104,6 +104,13 @@ include(CheckPreprocessor)
 check_preprocessor(USE_LINUX __linux__)
 check_preprocessor(USE_WINDOWS _WIN32)
 check_preprocessor(USE_APPLE __APPLE__)
+check_preprocessor(USE_ANDROID __ANDROID__)
+
+if(USE_ANDROID)
+  # CMake 3.7.1 doesn't define the target triple for the ASM language,
+  # resulting in all files compiled for the host architecture
+  set(CMAKE_ASM_COMPILER_TARGET "${CMAKE_CXX_COMPILER_TARGET}")
+endif()
 
 # Define the header-only Boost target
 add_library(Boost::boost INTERFACE IMPORTED GLOBAL)
