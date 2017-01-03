@@ -13,3 +13,20 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/program_options/src/winmain.cpp
     ${BOOST_SOURCE}/libs/program_options/src/split.cpp
 )
+
+_add_boost_test(
+  NAME program_options_test
+  LINK
+    Boost::program_options
+  TESTS
+    RUN ${BOOST_SOURCE}/libs/program_options/test/options_description_test.cpp
+    RUN ${BOOST_SOURCE}/libs/program_options/test/variable_map_test.cpp
+    RUN ${BOOST_SOURCE}/libs/program_options/test/cmdline_test.cpp
+    RUN ${BOOST_SOURCE}/libs/program_options/test/positional_options_test.cpp
+    RUN ${BOOST_SOURCE}/libs/program_options/test/unicode_test.cpp
+    RUN ${BOOST_SOURCE}/libs/program_options/test/winmain.cpp
+    RUN ${BOOST_SOURCE}/libs/program_options/test/exception_test.cpp
+    RUN ${BOOST_SOURCE}/libs/program_options/test/split_test.cpp
+    RUN ${BOOST_SOURCE}/libs/program_options/test/unrecognized_test.cpp
+    RUN ${BOOST_SOURCE}/libs/program_options/test/exception_txt_test.cpp
+)
