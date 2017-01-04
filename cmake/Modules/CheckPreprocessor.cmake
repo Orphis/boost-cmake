@@ -1,6 +1,6 @@
 function(check_preprocessor output_variable symbol)
   if(DEFINED _check_preprocessor_cache_${symbol})
-    set(${output_variable} "${_check_preprocessor_cache_${symbol}}")
+    set(${output_variable} "${_check_preprocessor_cache_${symbol}}" PARENT_SCOPE)
     return()
   endif()
 
@@ -20,9 +20,9 @@ int main() { return 0; }
 
 
   if(_check_preprocessor_result)
-    set(_check_preprocessor_cache_${symbol} TRUE CACHE STRING "" FORCE)
+    set(_check_preprocessor_cache_${symbol} TRUE CACHE BOOL "" FORCE)
   else()
-    set(_check_preprocessor_cache_${symbol} FALSE CACHE STRING "" FORCE)
+    set(_check_preprocessor_cache_${symbol} FALSE CACHE BOOL "" FORCE)
   endif()
   mark_as_advanced(_check_preprocessor_cache_${symbol})
 
