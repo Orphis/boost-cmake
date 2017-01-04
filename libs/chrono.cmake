@@ -8,7 +8,7 @@ _add_boost_lib(
     BOOST_CHRONO_STATIC_LINK=1
     BOOST_SYSTEM_NO_DEPRECATED
 )
-if(USE_LINUX)
+if(USE_LINUX AND NOT USE_ANDROID)
   target_link_libraries(Boost_chrono PUBLIC
     -lrt
     -pthread
