@@ -1,6 +1,6 @@
 if(USE_WINDOWS)
-  check_processor(_M_IX86 USE_X86)
-  check_processor(__GNUC__ USE_GNUC)
+  check_preprocessor(USE_X86 _M_IX86)
+  check_preprocessor(USE_GNUC __GNUC__)
   if(USE_X86)
     set(context_arch i386)
   else()
