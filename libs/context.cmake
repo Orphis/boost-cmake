@@ -41,4 +41,6 @@ _add_boost_lib(
   DEFINE_PRIVATE
     BOOST_CONTEXT_SOURCE=1
     BOOST_CONTEXT_EXPORT
+  LINK
+    Boost::thread
 )

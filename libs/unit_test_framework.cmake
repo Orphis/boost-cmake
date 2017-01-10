@@ -19,4 +19,6 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/test/src/junit_log_formatter.cpp
     ${BOOST_SOURCE}/libs/test/src/xml_log_formatter.cpp
     ${BOOST_SOURCE}/libs/test/src/xml_report_formatter.cpp
+  LINK
+    Boost::timer
 )

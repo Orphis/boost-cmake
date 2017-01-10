@@ -5,4 +5,7 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/timer/src/cpu_timer.cpp
   DEFINE_PRIVATE
     BOOST_TIMER_STATIC_LINK=1
+  LINK
+    Boost::chrono
+    Boost::system
 )
