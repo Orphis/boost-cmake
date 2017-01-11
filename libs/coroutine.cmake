@@ -21,3 +21,13 @@ _add_boost_lib(
     Boost::system
     Boost::thread
 )
+
+_add_boost_test(
+  NAME coroutine_test
+  LINK
+    Boost::coroutine
+    Boost::unit_test_framework
+  TESTS
+    RUN ${BOOST_SOURCE}/libs/coroutine/test/test_asymmetric_coroutine.cpp
+    RUN ${BOOST_SOURCE}/libs/coroutine/test/test_symmetric_coroutine.cpp
+)

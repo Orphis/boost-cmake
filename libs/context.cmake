@@ -44,3 +44,15 @@ _add_boost_lib(
   LINK
     Boost::thread
 )
+
+_add_boost_test(
+  NAME context_test
+  LINK
+    Boost::context
+    Boost::unit_test_framework
+  TESTS
+    RUN ${BOOST_SOURCE}/libs/context/test/test_invoke.cpp
+    RUN ${BOOST_SOURCE}/libs/context/test/test_apply.cpp
+    RUN ${BOOST_SOURCE}/libs/context/test/test_fcontext.cpp
+    RUN ${BOOST_SOURCE}/libs/context/test/test_execution_context.cpp
+)

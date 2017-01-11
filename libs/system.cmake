@@ -5,3 +5,15 @@ _add_boost_lib(
   DEFINE_PRIVATE
     BOOST_SYSTEM_STATIC_LINK=1
 )
+
+_add_boost_test(
+  NAME system_test
+  LINK
+    Boost::system
+  TESTS
+    RUN ${BOOST_SOURCE}/libs/system/test/error_code_test.cpp
+    RUN ${BOOST_SOURCE}/libs/system/test/error_code_user_test.cpp
+    RUN ${BOOST_SOURCE}/libs/system/test/system_error_test.cpp
+    RUN ${BOOST_SOURCE}/libs/system/test/header_only_test.cpp
+    RUN ${BOOST_SOURCE}/libs/system/test/config_test.cpp
+)
