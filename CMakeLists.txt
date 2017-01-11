@@ -202,6 +202,9 @@ function(_add_boost_test)
         COMMAND ${test_name}
         WORKING_DIRECTORY ${BOOST_SOURCE}/status
       )
+      if(MSVC)
+        target_compile_options(${test_name} PRIVATE /bigobj)
+      endif()
       if(NOT BOOST_STANDALONE)
         set_target_properties(${test_name} PROPERTIES EXCLUDE_FROM_ALL 1)
       endif()
