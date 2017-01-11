@@ -1,0 +1,17 @@
+version: 1.0.{build}
+
+environment:
+  matrix:
+  - BUILD_TOOLCHAIN: amd64_x86
+  - BUILD_TOOLCHAIN: amd64
+
+install:
+- ps: cinst ninja
+
+build_script:
+- cmd: |-
+    call "%VS140COMNTOOLS%\..\..\VC\vcvarsall.bat" %BUILD_TOOLCHAIN%
+    mkdir build
+    cd build
+    cmake .. -GNinja
+    ninja -v
