@@ -51,7 +51,9 @@ travis_script() {
     pushd build
 
     if [ "$BUILD_TARGET" = "Linux" ]; then
-        cmake .. -GNinja
+        cmake .. -GNinja \
+                 -DCMAKE_C_COMPILER=gcc-5 \
+                 -DCMAKE_CXX_COMPILER=g++-5
     elif [ "$BUILD_TARGET" = "Android" ]; then
         cmake .. -GNinja \
                  -DCMAKE_SYSTEM_NAME=Android \

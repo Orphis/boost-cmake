@@ -11,6 +11,7 @@ addons:
     packages:
       - build-essential
       - aria2
+      - g++-5
       - lib32stdc++6
       - lib32z1
       - lib32bz2-1.0
