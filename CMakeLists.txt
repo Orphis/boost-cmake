@@ -8,7 +8,7 @@ set(BOOST_URL_SHA256 "bb03ac7d13d6bfae52ac13ceaf54d88aa0c4776611bf60a942947f46ae
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL "${CMAKE_SOURCE_DIR}")
-  message("-- Standalone mode detected")
+  message(STATUS "-- Standalone mode detected")
   set(BOOST_STANDALONE ON)
   set(CMAKE_CXX_STANDARD 11)
   set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -33,7 +33,7 @@ if(BOOST_SOURCE AND NOT EXISTS "${BOOST_SOURCE}/boost/version.hpp")
 endif()
 
 if(BOOST_LOCAL_SHA256 AND NOT BOOST_LOCAL_SHA256 STREQUAL "${BOOST_URL_SHA256}")
-  message("New Boost version detected, removing older one")
+  message(STATUS "New Boost version detected, removing older one")
   file(REMOVE_RECURSE "${EXTRACT_PATH}")
   file(REMOVE "${DOWNLOAD_PATH}")
   unset(BOOST_LOCAL_SHA256 CACHE)
@@ -53,7 +53,7 @@ if(NOT BOOST_SOURCE OR NOT EXISTS "${BOOST_SOURCE}")
   if(NOT EXISTS "${DOWNLOAD_PATH}")
     file(REMOVE "${DOWNLOAD_PATH}.tmp")
 
-    message("-- Downloading Boost from ${BOOST_URL}")
+    message(STATUS "-- Downloading Boost from ${BOOST_URL}")
     file(DOWNLOAD ${BOOST_URL} "${DOWNLOAD_PATH}.tmp"
          EXPECTED_HASH SHA256=${BOOST_URL_SHA256}
          STATUS download_status
@@ -72,7 +72,7 @@ if(NOT BOOST_SOURCE OR NOT EXISTS "${BOOST_SOURCE}")
   set(BOOST_LOCAL_SHA256 "${BOOST_URL_SHA256}" CACHE STRING "Current SHA256 of Boost archive used" FORCE)
 
   if(NOT IS_DIRECTORY "${EXTRACT_PATH}")
-    message("-- Extracting Boost archive...")
+    message(STATUS "-- Extracting Boost archive...")
     if(EXISTS "${EXTRACT_PATH}.tmp")
       file(REMOVE_RECURSE "${EXTRACT_PATH}.tmp")
     endif()
@@ -100,7 +100,7 @@ math(EXPR BOOST_VERSION_MINOR "${boost_version_raw} / 100 % 1000")
 math(EXPR BOOST_VERSION_PATCH "${boost_version_raw} % 100")
 set(BOOST_VERSION "${BOOST_VERSION_MAJOR}.${BOOST_VERSION_MINOR}.${BOOST_VERSION_PATCH}")
 
-message("-- Boost found: ${BOOST_VERSION} ${BOOST_SOURCE}")
+message(STATUS "-- Boost found: ${BOOST_VERSION} ${BOOST_SOURCE}")
 
 # Basic platform detection
 include(CheckPreprocessor)
@@ -108,6 +108,7 @@ check_preprocessor(USE_LINUX __linux__)
 check_preprocessor(USE_WINDOWS _WIN32)
 check_preprocessor(USE_APPLE __APPLE__)
 check_preprocessor(USE_ANDROID __ANDROID__)
+check_preprocessor(USE_FREEBSD __FreeBSD__)
 
 if(USE_ANDROID)
   # CMake 3.7.1 doesn't define the target triple for the ASM language,
