@@ -234,7 +234,7 @@ set(BOOST_LIBS
   filesystem
   graph
   iostreams
-  #locale # depends on ICU or other external libraries
+  locale
   #log # a bit complex and some platform specific setup
   math
   mpi
