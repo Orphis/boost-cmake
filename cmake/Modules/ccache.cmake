@@ -1,5 +1,5 @@
-find_program(CCACHE_FOUND ccache)
-if(CCACHE_FOUND)
+find_program(CCACHE_BIN ccache)
+if(CCACHE_BIN)
     set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE ${CCACHE_FOUND})
     set_property(GLOBAL PROPERTY RULE_LAUNCH_LINK ${CCACHE_FOUND})
 

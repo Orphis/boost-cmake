@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.0.0)
 project(Boost-CMake)
 
 option(BOOST_DOWNLOAD_TO_BINARY_DIR "Prefer downloading Boost to the binary directory instead of source directory" OFF)
-set(BOOST_URL "https://github.com/Orphis/boost-cmake/releases/download/v1.63.0%2B1/boost_1_63_0-1.tar.xz")
-set(BOOST_URL_SHA256 "bb03ac7d13d6bfae52ac13ceaf54d88aa0c4776611bf60a942947f46aedcdb1a")
+set(BOOST_URL "https://github.com/Orphis/boost-cmake/releases/download/v1.63.0%2B1/boost_1_63_0-1.tar.xz" CACHE STRING "Boost download URL")
+set(BOOST_URL_SHA256 "bb03ac7d13d6bfae52ac13ceaf54d88aa0c4776611bf60a942947f46aedcdb1a" CACHE STRING "Boost download URL SHA256 checksum")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 
@@ -70,6 +70,7 @@ if(NOT BOOST_SOURCE OR NOT EXISTS "${BOOST_SOURCE}")
   endif()
 
   set(BOOST_LOCAL_SHA256 "${BOOST_URL_SHA256}" CACHE STRING "Current SHA256 of Boost archive used" FORCE)
+  mark_as_advanced(BOOST_LOCAL_SHA256)
 
   if(NOT IS_DIRECTORY "${EXTRACT_PATH}")
     message(STATUS "-- Extracting Boost archive...")
