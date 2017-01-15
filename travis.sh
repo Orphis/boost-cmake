@@ -31,8 +31,8 @@ travis_before_install() {
 travis_install() {
     # Ubuntu Linux + GCC 4.8
     if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-        download_extract "https://cmake.org/files/v3.7/cmake-3.7.1-Linux-x86_64.tar.gz" cmake-3.7.1-Linux-x86_64.tar.gz
-        echo "export PATH=$(pwd)/cmake-3.7.1-Linux-x86_64/bin:\$PATH" >> travis_env.sh
+        download_extract "https://cmake.org/files/v3.7/cmake-3.7.2-Linux-x86_64.tar.gz" cmake-3.7.2-Linux-x86_64.tar.gz
+        echo "export PATH=$(pwd)/cmake-3.7.2-Linux-x86_64/bin:\$PATH" >> travis_env.sh
     elif [ "$TRAVIS_OS_NAME" = "osx" ]; then
         brew_install ccache
         brew_install cmake
