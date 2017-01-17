@@ -22,10 +22,10 @@ _add_boost_lib(
     Boost::system
 )
 if(NOT USE_WINDOWS)
+  find_package(Threads REQUIRED)
+
+  target_link_libraries(Boost_thread PUBLIC Threads::Threads)
   target_compile_definitions(Boost_thread PRIVATE
     BOOST_THREAD_POSIX
   )
-endif()
-if(USE_LINUX)
-  target_link_libraries(Boost_thread PUBLIC -pthread)
 endif()

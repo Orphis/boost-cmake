@@ -8,9 +8,15 @@ _add_boost_lib(
     BOOST_CHRONO_STATIC_LINK=1
     BOOST_SYSTEM_NO_DEPRECATED
 )
-if(USE_LINUX AND NOT USE_ANDROID)
-  target_link_libraries(Boost_chrono PUBLIC
-    -lrt
-    -pthread
+if(NOT USE_WINDOWS)
+  find_package(Threads)
+  target_link_libraries(Boost_chrono PRIVATE Threads::Threads)
+
+  find_library(RT_LIBRARY
+    NAMES rt
+    DOC "rt library"
   )
+  if(RT_LIBRARY)
+    target_link_libraries(Boost_chrono PRIVATE ${RT_LIBRARY})
+  endif()
 endif()
