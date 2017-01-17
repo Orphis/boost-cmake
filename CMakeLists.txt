@@ -41,7 +41,7 @@ set(BOOST_LIBS
   graph
   iostreams
   locale
-  #log # a bit complex and some platform specific setup
+  log
   math
   mpi
   graph_parallel # depends on mpi, so needs to be put after it
