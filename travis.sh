@@ -1,6 +1,6 @@
 #/usr/bin/env bash
 
-NDK_VER=android-ndk-r13b
+NDK_VER=android-ndk-r14b
 
 if [ -f "travis_env.sh" ]; then
   . travis_env.sh
