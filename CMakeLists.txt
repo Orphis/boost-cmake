@@ -16,6 +16,8 @@ include(PlatformDetect)
 include(AddBoostLib)
 include(AddBoostTest)
 
+set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
+
 if(USE_ANDROID)
   # CMake 3.7.1 doesn't define the target triple for the ASM language,
   # resulting in all files compiled for the host architecture
