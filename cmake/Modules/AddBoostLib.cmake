@@ -6,7 +6,10 @@ function(_add_boost_lib)
                         "${multiValueArgs}" ${ARGN})
   add_library(Boost_${BOOSTLIB_NAME} STATIC ${BOOSTLIB_SOURCES})
   add_library(Boost::${BOOSTLIB_NAME} ALIAS Boost_${BOOSTLIB_NAME})
-  set_target_properties(Boost_${BOOSTLIB_NAME} PROPERTIES OUTPUT_NAME "boost_${BOOSTLIB_NAME}")
+  set_target_properties(Boost_${BOOSTLIB_NAME} PROPERTIES
+    OUTPUT_NAME "boost_${BOOSTLIB_NAME}"
+    FOLDER "Boost"
+  )
   if(NOT BOOST_STANDALONE)
     set_target_properties(Boost_${BOOSTLIB_NAME} PROPERTIES EXCLUDE_FROM_ALL 1)
   endif()

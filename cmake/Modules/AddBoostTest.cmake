@@ -43,6 +43,9 @@ function(_add_boost_test)
         COMMAND ${test_name}
         WORKING_DIRECTORY ${BOOST_SOURCE}/status
       )
+      set_target_properties(${test_name} PROPERTIES
+        FOLDER "Boost/Tests"
+      )
       if(MSVC)
         target_compile_options(${test_name} PRIVATE /bigobj)
       endif()
