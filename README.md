@@ -19,6 +19,23 @@ target_link_libraries(lib_using_filesystem PUBLIC Boost::filesystem)
 target_link_libraries(lib_using_header_only PUBLIC Boost::boost)
 ```
 
+## Configuration
+
+Boost will automatically be downloaded from GitHub as a minified archive created with the `repack.sh` script.
+
+If that is not acceptable to you, you can use an alternate Boost version, apply custom patches or just mirror the current archive in your internal network like so:
+```
+set(BOOST_URL http://internal.mirror/boost.7z)
+set(BOOST_URL_SHA256 foobar)
+add_subdirectory(boost-cmake)
+```
+
+If you have Boost sources already available and want to point to them, you can use the following:
+```
+set(BOOST_SOURCE /path/to/boost)
+add_subdirectory(boost-cmake)
+```
+
 ## Motivation
 
 Most people struggle building Boost for various platforms or using package managers to get the right version, so I figured I would open-source the solution similar to the one I developed while I worked at Spotify.
