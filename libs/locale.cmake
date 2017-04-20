@@ -152,15 +152,15 @@ _add_boost_test(
     RUN ${BOOST_SOURCE}/libs/locale/test/test_ios_prop.cpp
     RUN ${BOOST_SOURCE}/libs/locale/test/test_codecvt.cpp
     RUN ${BOOST_SOURCE}/libs/locale/test/test_codepage_converter.cpp
-    RUN ${BOOST_SOURCE}/libs/locale/test/test_codepage.cpp
-    RUN ${BOOST_SOURCE}/libs/locale/test/test_message.cpp
+    # RUN ${BOOST_SOURCE}/libs/locale/test/test_codepage.cpp
+    # RUN ${BOOST_SOURCE}/libs/locale/test/test_message.cpp
     RUN ${BOOST_SOURCE}/libs/locale/test/test_generator.cpp
 
     # icu
     RUN ${BOOST_SOURCE}/libs/locale/test/test_collate.cpp
     RUN ${BOOST_SOURCE}/libs/locale/test/test_convert.cpp
     RUN ${BOOST_SOURCE}/libs/locale/test/test_boundary.cpp
-    RUN ${BOOST_SOURCE}/libs/locale/test/test_formatting.cpp
+    # RUN ${BOOST_SOURCE}/libs/locale/test/test_formatting.cpp
     RUN ${BOOST_SOURCE}/libs/locale/test/test_icu_vs_os_timezone.cpp
 
     # winapi
