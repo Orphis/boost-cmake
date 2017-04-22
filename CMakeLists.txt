@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.0.0)
 project(Boost-CMake)
 
 option(BOOST_DOWNLOAD_TO_BINARY_DIR "Prefer downloading Boost to the binary directory instead of source directory" OFF)
-set(BOOST_URL "https://github.com/Orphis/boost-cmake/releases/download/v1.63.0%2B1/boost_1_63_0-1.tar.xz" CACHE STRING "Boost download URL")
-set(BOOST_URL_SHA256 "bb03ac7d13d6bfae52ac13ceaf54d88aa0c4776611bf60a942947f46aedcdb1a" CACHE STRING "Boost download URL SHA256 checksum")
+set(BOOST_URL "https://github.com/Orphis/boost-cmake/releases/download/v1.64.0/boost_1_64_0.tar.xz" CACHE STRING "Boost download URL")
+set(BOOST_URL_SHA256 "d964dfdab2f73d04a8f52303f1b141344447b78ab85dc79da78fa167fdd807f5" CACHE STRING "Boost download URL SHA256 checksum")
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 
