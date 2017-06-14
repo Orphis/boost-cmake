@@ -1,17 +1,22 @@
 version: 1.0.{build}
 
+image:
+- Visual Studio 2017
+
 environment:
   matrix:
-  - BUILD_TOOLCHAIN: amd64_x86
-  - BUILD_TOOLCHAIN: amd64
+  - BUILD_TOOLSET: v140
+    BUILD_TOOLCHAIN: amd64_x86
+  - BUILD_TOOLSET: v140
+    BUILD_TOOLCHAIN: amd64
+  - BUILD_TOOLSET: v141
+    BUILD_TOOLCHAIN: amd64_x86
+  - BUILD_TOOLSET: v141
+    BUILD_TOOLCHAIN: amd64
 
 install:
-- ps: cinst ninja
+- ps: cinst ninja vswhere
 
 build_script:
 - cmd: |-
-    call "%VS140COMNTOOLS%\..\..\VC\vcvarsall.bat" %BUILD_TOOLCHAIN%
-    mkdir build
-    cd build
-    cmake .. -GNinja
-    ninja -v
+    bash appveyor.sh
