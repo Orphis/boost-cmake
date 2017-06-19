@@ -52,6 +52,8 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/locale/src/util/default_locale.cpp
     ${BOOST_SOURCE}/libs/locale/src/util/info.cpp
     ${BOOST_SOURCE}/libs/locale/src/util/locale_data.cpp
+  DEFINE_PRIVATE
+    BOOST_THREAD_PROVIDES_NESTED_LOCKS
   LINK
     Boost::system
 )
