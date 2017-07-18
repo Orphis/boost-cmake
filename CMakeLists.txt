@@ -77,3 +77,5 @@ if(USE_ANDROID)
   # Android doesn't support thread local storage through compiler intrinsics
   set_property(TARGET Boost::boost APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS BOOST_ASIO_DISABLE_THREAD_KEYWORD_EXTENSION)
 endif()
+
+install(DIRECTORY ${BOOST_SOURCE}/boost DESTINATION include)
