@@ -6,8 +6,17 @@ else()
   set(DOWNLOAD_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}")
 endif()
 
+if(IS_DIRECTORY ${BOOST_ARCHIVE_DIRECTORY})
+  message(STATUS "Using local directory to search for boost archive: ${BOOST_ARCHIVE_DIRECTORY}")
+  set(USING_LOCAL_ARCHIVE TRUE)
+  set(ARCHIVE_PREFIX ${BOOST_ARCHIVE_DIRECTORY})
+else()
+  set(USING_LOCAL_ARCHIVE FALSE)
+  set(ARCHIVE_PREFIX ${DOWNLOAD_PREFIX})
+endif()
+
 get_filename_component(BOOST_URL_FILENAME "${BOOST_URL}" NAME)
-set(DOWNLOAD_PATH "${DOWNLOAD_PREFIX}/${BOOST_URL_FILENAME}")
+set(DOWNLOAD_PATH "${ARCHIVE_PREFIX}/${BOOST_URL_FILENAME}")
 set(EXTRACT_PATH "${DOWNLOAD_PREFIX}/boost")
 
 # Check if the provided folder points to a valid installation
@@ -36,8 +45,16 @@ if(NOT BOOST_SOURCE OR NOT EXISTS "${BOOST_SOURCE}")
   if(EXISTS "${DOWNLOAD_PATH}")
     file(SHA256 "${DOWNLOAD_PATH}" LOCAL_SHA256)
     if(NOT LOCAL_SHA256 STREQUAL "${BOOST_URL_SHA256}")
-      message(WARNING "File ${DOWNLOAD_PATH} doesn't match the expected SHA256.\n Local ${LOCAL_SHA256} != Expected ${BOOST_URL_SHA256}")
-      file(REMOVE "${DOWNLOAD_PATH}")
+      # If the user specified a local archive, we fail permanently if the SHA doesn't match.
+      # Furthermore, we do not remove local archives since we do not own them (they are maintained
+      # by the user). We will not attempt to download archives if a local archive was specified.
+      set(_error_msg "File ${DOWNLOAD_PATH} doesn't match the expected SHA256.\n Local ${LOCAL_SHA256} != Expected ${BOOST_URL_SHA256}")
+      if(NOT USING_LOCAL_ARCHIVE)
+        message(WARNING ${_error_msg})
+        file(REMOVE "${DOWNLOAD_PATH}")
+      else()
+        message(FATAL_ERROR ${_error_msg})
+      endif()
     endif()
   endif()
 
