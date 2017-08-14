@@ -11,6 +11,7 @@ _add_boost_lib(
 if(NOT USE_WINDOWS)
   find_package(Threads)
   target_link_libraries(Boost_chrono PRIVATE Threads::Threads)
+  set_property(GLOBAL APPEND PROPERTY Boost_Find_Package Threads)
 
   find_library(RT_LIBRARY
     NAMES rt

@@ -30,3 +30,4 @@ _add_boost_lib(
 )
 target_include_directories(Boost_mpi PUBLIC ${MPI_CXX_INCLUDE_PATH})
 target_link_libraries(Boost_mpi PUBLIC ${MPI_CXX_LINK_FLAGS} ${MPI_CXX_LIBRARIES})
+set_property(GLOBAL APPEND PROPERTY Boost_Find_Property MPI)

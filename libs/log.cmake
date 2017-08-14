@@ -76,7 +76,7 @@ endif()
 try_compile(HAVE_ATOMIC_INT32
   "${CMAKE_CURRENT_BINARY_DIR}"
   "${BOOST_SOURCE}/libs/log/config/atomic-int32/atomic_int32.cpp"
-  LINK_LIBRARIES Boost::boost
+  LINK_LIBRARIES Boost::boost_imported
 )
 if(NOT HAVE_ATOMIC_INT32)
   target_compile_definitions(Boost_log PRIVATE BOOST_LOG_WITHOUT_IPC)

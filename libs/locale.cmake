@@ -59,6 +59,7 @@ _add_boost_lib(
 # Convenience interface library to link deps to both main library and tests
 add_library(Boost_locale_deps INTERFACE)
 target_link_libraries(Boost_locale PRIVATE Boost_locale_deps)
+install(TARGETS Boost_locale_deps DESTINATION lib EXPORT boost-libs)
 
 if(BOOST_LOCALE_ENABLE_ICU_BACKEND AND ICU_FOUND)
   target_sources(Boost_locale PRIVATE
@@ -79,6 +80,7 @@ if(BOOST_LOCALE_ENABLE_ICU_BACKEND AND ICU_FOUND)
     ICU::uc
   )
   target_compile_definitions(Boost_locale_deps INTERFACE BOOST_LOCALE_WITH_ICU=1)
+  set_property(GLOBAL APPEND PROPERTY Boost_Find_Package ICU)
 endif()
 
 if(BOOST_LOCALE_ENABLE_STD_BACKEND)
@@ -98,6 +100,7 @@ if(BOOST_LOCALE_ENABLE_ICONV_BACKEND AND ICONV_FOUND)
     Iconv::Iconv
   )
   target_compile_definitions(Boost_locale_deps INTERFACE BOOST_LOCALE_WITH_ICONV=1)
+  set_property(GLOBAL APPEND PROPERTY Boost_Find_Package Iconv)
 endif()
 
 if(BOOST_LOCALE_ENABLE_WINAPI_BACKEND)

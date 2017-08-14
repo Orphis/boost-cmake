@@ -22,10 +22,11 @@ _add_boost_lib(
     Boost::system
 )
 if(NOT USE_WINDOWS)
-  find_package(Threads REQUIRED)
+  find_package(Threads)
 
   target_link_libraries(Boost_thread PUBLIC Threads::Threads)
   target_compile_definitions(Boost_thread PRIVATE
     BOOST_THREAD_POSIX
   )
+  set_property(GLOBAL APPEND PROPERTY Boost_Find_Package "Threads")
 endif()
