@@ -25,6 +25,8 @@ if(USE_ANDROID)
   # CMake 3.7.1 doesn't define the target triple for the ASM language,
   # resulting in all files compiled for the host architecture
   set(CMAKE_ASM_COMPILER_TARGET "${CMAKE_CXX_COMPILER_TARGET}")
+elseif( MSVC )
+  string(APPEND CMAKE_CXX_FLAGS " /MP")
 endif()
 
 set(BOOST_LIBS_REQUIRED
