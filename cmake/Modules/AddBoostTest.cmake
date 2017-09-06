@@ -1,5 +1,5 @@
 function(_add_boost_test)
-  if(NOT BOOST_STANDALONE)
+  if(NOT BOOST_STANDALONE OR BOOST_DISABLE_TESTS)
     return()
   endif()
 
