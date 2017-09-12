@@ -25,10 +25,11 @@ if(USE_ANDROID)
   set(CMAKE_ASM_COMPILER_TARGET "${CMAKE_CXX_COMPILER_TARGET}")
 endif()
 
-set(BOOST_LIBS
+set(BOOST_LIBS_REQUIRED
   # Header only libs
   header
-
+)
+set(BOOST_LIBS_OPTIONAL
   # Compiled libs
   atomic
   chrono
@@ -53,15 +54,22 @@ set(BOOST_LIBS
   serialization
   signals
   system
-  unit_test_framework
+  test
   thread
   timer
   type_erasure
   wave
 )
 
-foreach(lib ${BOOST_LIBS})
+foreach(lib ${BOOST_LIBS_REQUIRED})
   include("libs/${lib}.cmake")
+endforeach()
+
+foreach(lib ${BOOST_LIBS_OPTIONAL})
+  # In case only a subset of modules is available (eg. after using bcp)
+  if(EXISTS "${BOOST_SOURCE}/libs/${lib}")
+    include("libs/${lib}.cmake")
+  endif()
 endforeach()
 
 # TODO: Move those to option() calls in the right file
