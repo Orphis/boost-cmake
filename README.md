@@ -36,6 +36,12 @@ set(BOOST_SOURCE /path/to/boost)
 add_subdirectory(boost-cmake)
 ```
 
+You can specify a subset of compiled libraries, which will be included to project. This can be useful for a build with MSVC compiler.
+'''
+set(BOOST_LIBS_OPTIONAL filesystem program_options system CACHE STRING "" FORCE)
+add_subdirectory(boost-cmake)
+'''
+
 ## Motivation
 
 Most people struggle building Boost for various platforms or using package managers to get the right version, so I figured I would open-source the solution similar to the one I developed while I worked at Spotify.

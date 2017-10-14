@@ -59,6 +59,7 @@ set(BOOST_LIBS_OPTIONAL
   timer
   type_erasure
   wave
+  CACHE STRING ""  
 )
 
 foreach(lib ${BOOST_LIBS_REQUIRED})
