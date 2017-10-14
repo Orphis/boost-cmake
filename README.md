@@ -37,10 +37,10 @@ add_subdirectory(boost-cmake)
 ```
 
 You can specify a subset of compiled libraries, which will be included to project. This can be useful for a build with MSVC compiler.
-'''
+```
 set(BOOST_LIBS_OPTIONAL filesystem program_options system CACHE STRING "" FORCE)
 add_subdirectory(boost-cmake)
-'''
+```
 
 ## Motivation
 
