@@ -2,7 +2,7 @@
 
 set -e
 
-BOOST_VERSION=1.64.0
+BOOST_VERSION=1.67.0
 
 function finish {
   rm -rf ${tmp_dir}
