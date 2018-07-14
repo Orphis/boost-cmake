@@ -37,5 +37,4 @@ _add_boost_test(
     RUN ${BOOST_SOURCE}/libs/exception/test/current_exception_cast_test.cpp
     RUN ${BOOST_SOURCE}/libs/exception/test/errinfos_test.cpp
     RUN ${BOOST_SOURCE}/libs/exception/test/exception_ptr_test.cpp
-    RUN ${BOOST_SOURCE}/libs/exception/test/N3757_test.cpp
 )

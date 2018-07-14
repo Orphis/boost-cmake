@@ -40,7 +40,6 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/serialization/src/extended_type_info_typeid.cpp
     ${BOOST_SOURCE}/libs/serialization/src/polymorphic_iarchive.cpp
     ${BOOST_SOURCE}/libs/serialization/src/polymorphic_oarchive.cpp
-    ${BOOST_SOURCE}/libs/serialization/src/singleton.cpp
     ${BOOST_SOURCE}/libs/serialization/src/stl_port.cpp
     ${BOOST_SOURCE}/libs/serialization/src/text_iarchive.cpp
     ${BOOST_SOURCE}/libs/serialization/src/text_oarchive.cpp
