@@ -10,7 +10,7 @@ Install the submodule in your project structure:
 ```
 git submodule add https://github.com/Orphis/boost-cmake.git
 ```
-Use it! In you CMakeLists.txt file:
+Use it! In your CMakeLists.txt file:
 
 ```
 add_subdirectory(boost-cmake)
