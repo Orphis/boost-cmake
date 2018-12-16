@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(Boost-CMake)
 
+cmake_policy(SET CMP0074 NEW)
+
 option(BOOST_DOWNLOAD_TO_BINARY_DIR "Prefer downloading Boost to the binary directory instead of source directory" OFF)
 option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
 
