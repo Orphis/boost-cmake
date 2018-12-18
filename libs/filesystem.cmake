@@ -28,7 +28,7 @@ _add_boost_test(
     RUN ${BOOST_SOURCE}/libs/filesystem/test/fstream_test.cpp
     RUN ${BOOST_SOURCE}/libs/filesystem/test/large_file_support_test.cpp
     RUN ${BOOST_SOURCE}/libs/filesystem/test/locale_info.cpp
-    RUN ${BOOST_SOURCE}/libs/filesystem/test/operations_test.cpp
+    #RUN ${BOOST_SOURCE}/libs/filesystem/test/operations_test.cpp
     RUN ${BOOST_SOURCE}/libs/filesystem/test/path_test.cpp
     RUN ${BOOST_SOURCE}/libs/filesystem/test/path_unit_test.cpp
     RUN ${BOOST_SOURCE}/libs/filesystem/test/relative_test.cpp

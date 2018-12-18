@@ -1,4 +1,4 @@
-# Boost CMake [![Build Status](https://travis-ci.org/Orphis/boost-cmake.svg?branch=master)](https://travis-ci.org/Orphis/boost-cmake)
+# Boost CMake [![Build Status](https://dev.azure.com/Orphis/boost-cmake/_apis/build/status/Orphis.boost-cmake?branchName=master)](https://dev.azure.com/Orphis/boost-cmake/_build/latest?definitionId=1?branchName=master)
 
 ## Synopsis
 
