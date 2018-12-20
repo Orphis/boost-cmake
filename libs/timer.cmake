@@ -7,5 +7,4 @@ _add_boost_lib(
     BOOST_TIMER_STATIC_LINK=1
   LINK
     Boost::chrono
-    Boost::system
 )

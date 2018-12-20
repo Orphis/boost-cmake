@@ -3,6 +3,5 @@ _add_boost_lib(
   SOURCES
     ${BOOST_SOURCE}/libs/type_erasure/src/dynamic_binding.cpp
   LINK
-    Boost::system
     Boost::thread
 )

@@ -55,7 +55,6 @@ _add_boost_lib(
     Boost::atomic
     Boost::date_time
     Boost::filesystem
-    Boost::system
     Boost::thread
     $<$<BOOL:${USE_WINDOWS}>:
       ws2_32
@@ -168,7 +167,6 @@ _add_boost_test(
     Boost::log
     Boost::log_setup
     Boost::regex
-    Boost::system
     Boost::thread
     Boost::unit_test_framework
     Boost_log_common

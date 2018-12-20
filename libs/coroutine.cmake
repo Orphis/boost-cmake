@@ -18,7 +18,6 @@ _add_boost_lib(
     BOOST_COROUTINES_SOURCE
   LINK
     Boost::context
-    Boost::system
     Boost::thread
 )
 

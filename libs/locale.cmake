@@ -52,8 +52,6 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/locale/src/util/default_locale.cpp
     ${BOOST_SOURCE}/libs/locale/src/util/info.cpp
     ${BOOST_SOURCE}/libs/locale/src/util/locale_data.cpp
-  LINK
-    Boost::system
 )
 
 # Convenience interface library to link deps to both main library and tests
