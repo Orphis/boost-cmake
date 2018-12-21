@@ -9,11 +9,13 @@ function(_add_boost_lib)
   set_target_properties(Boost_${BOOSTLIB_NAME} PROPERTIES
     OUTPUT_NAME "boost_${BOOSTLIB_NAME}"
     FOLDER "Boost"
+    EXPORT_NAME "${BOOSTLIB_NAME}"
   )
   if(NOT BOOST_STANDALONE)
     set_target_properties(Boost_${BOOSTLIB_NAME} PROPERTIES EXCLUDE_FROM_ALL 1)
   endif()
   target_link_libraries(Boost_${BOOSTLIB_NAME} PUBLIC Boost::boost)
+  install(TARGETS Boost_${BOOSTLIB_NAME} DESTINATION lib EXPORT boost-libs)
   if(MSVC)
     target_compile_options(Boost_${BOOSTLIB_NAME} PRIVATE /W0)
   else()

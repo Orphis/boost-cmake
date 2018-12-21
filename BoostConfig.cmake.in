@@ -1,0 +1,21 @@
+set(_boost_deps @BOOST_FIND_PACKAGE@)
+
+foreach(dep ${_boost_deps})
+  find_package(${dep} QUIET)
+  if(${dep}_FOUND)
+    list(APPEND _boost_deps_found ${dep})
+  else()
+    list(APPEND _boost_deps_missing ${dep})
+  endif()
+endforeach()
+
+message(STATUS "Boost dependencies found: ${_boost_deps_found}")
+if(_boost_deps_missing)
+  message(STATUS "Boost dependencies missing: ${_boost_deps_missing}")
+endif()
+
+unset(_boost_deps)
+unset(_boost_deps_found)
+unset(_boost_deps_missing)
+
+include("${CMAKE_CURRENT_LIST_DIR}/BoostTargets.cmake")

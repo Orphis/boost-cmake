@@ -19,6 +19,7 @@ if(BOOST_IOSTREAMS_ENABLE_BZIP2)
     target_link_libraries(Boost_iostreams PRIVATE
       BZip2::BZip2
     )
+    set_property(GLOBAL APPEND PROPERTY Boost_Find_Package BZip2)
   endif()
 endif()
 
@@ -32,6 +33,7 @@ if(BOOST_IOSTREAMS_ENABLE_ZLIB)
     target_link_libraries(Boost_iostreams PRIVATE
       ZLIB::ZLIB
     )
+    set_property(GLOBAL APPEND PROPERTY Boost_Find_Package ZLIB)
   endif()
 endif()
 
