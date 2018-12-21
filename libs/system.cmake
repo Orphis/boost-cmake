@@ -9,7 +9,7 @@ _add_boost_lib(
 _add_boost_test(
   NAME system_test
   LINK
-    Boost::system
+    Boost::boost
   TESTS
     RUN ${BOOST_SOURCE}/libs/system/test/error_code_test.cpp
     RUN ${BOOST_SOURCE}/libs/system/test/error_code_user_test.cpp

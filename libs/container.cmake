@@ -21,7 +21,7 @@ _add_boost_test(
     RUN ${BOOST_SOURCE}/libs/container/test/alloc_basic_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/alloc_full_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/allocator_traits_test.cpp
-    RUN ${BOOST_SOURCE}/libs/container/test/deque_test.cpp
+    #RUN ${BOOST_SOURCE}/libs/container/test/deque_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/explicit_inst_deque_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/explicit_inst_flat_map_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/explicit_inst_flat_set_test.cpp
@@ -63,13 +63,13 @@ _add_boost_test(
     RUN ${BOOST_SOURCE}/libs/container/test/scoped_allocator_usage_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/set_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/slist_test.cpp
-    RUN ${BOOST_SOURCE}/libs/container/test/small_vector_test.cpp
-    RUN ${BOOST_SOURCE}/libs/container/test/stable_vector_test.cpp
+    #RUN ${BOOST_SOURCE}/libs/container/test/small_vector_test.cpp
+    #RUN ${BOOST_SOURCE}/libs/container/test/stable_vector_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/static_vector_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/string_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/synchronized_pool_resource_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/throw_exception_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/unsynchronized_pool_resource_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/uses_allocator_test.cpp
-    RUN ${BOOST_SOURCE}/libs/container/test/vector_test.cpp
+    #RUN ${BOOST_SOURCE}/libs/container/test/vector_test.cpp
 )

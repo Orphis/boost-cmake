@@ -19,7 +19,6 @@ _add_boost_lib(
     BOOST_THREAD_BUILD_LIB=1
   LINK
     Boost::chrono
-    Boost::system
 )
 if(NOT USE_WINDOWS)
   find_package(Threads REQUIRED)
