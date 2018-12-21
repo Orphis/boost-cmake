@@ -30,9 +30,17 @@ set(BOOST_URL_SHA256 foobar)
 add_subdirectory(boost-cmake)
 ```
 
+For more advanced configuration, you can override the way to download the sources using [FetchContent_Declare](https://cmake.org/cmake/help/latest/module/FetchContent.html):
+```
+FetchContent_Declare(
+  Boost
+  SVN_REPOSITORY "svn+ssh://svn.company.com/boost"
+)
+```
+
 If you have Boost sources already available and want to point to them, you can use the following:
 ```
-set(BOOST_SOURCE /path/to/boost)
+set(FETCHCONTENT_SOURCE_DIR_boost /path/to/boost)
 add_subdirectory(boost-cmake)
 ```
 
