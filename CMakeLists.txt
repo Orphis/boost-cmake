@@ -2,16 +2,28 @@ cmake_minimum_required(VERSION 3.12)
 project(Boost-CMake)
 
 option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
+option(BOOST_GIT "Get Boost from Git source" OFF)
 
 set(BOOST_URL "https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.bz2" CACHE STRING "Boost download URL")
 set(BOOST_URL_SHA256 "8f32d4617390d1c2d16f26a27ab60d97807b35440d45891fa340fc2648b04406" CACHE STRING "Boost download URL SHA256 checksum")
+set(BOOST_GIT_URL "https://github.com/boostorg/boost.git" CACHE STRING "Boost Git URL to top-level repository")
+set(BOOST_GIT_TAG "boost-1.69.0" CACHE STRING "Boost Git tag or branch name")
 
 include(FetchContent)
-FetchContent_Declare(
-  Boost
-  URL ${BOOST_URL}
-  URL_HASH SHA256=${BOOST_URL_SHA256}
-)
+
+if(BOOST_GIT)
+  FetchContent_Declare(
+    Boost
+    GIT_REPOSITORY "${BOOST_GIT_URL}"
+    GIT_TAG "${BOOST_GIT_TAG}"
+  )
+else()
+  FetchContent_Declare(
+    Boost
+    URL ${BOOST_URL}
+    URL_HASH SHA256=${BOOST_URL_SHA256}
+  )
+endif()
 FetchContent_GetProperties(Boost)
 
 if(NOT Boost_POPULATED)

@@ -30,6 +30,12 @@ set(BOOST_URL_SHA256 foobar)
 add_subdirectory(boost-cmake)
 ```
 
+If you prefer using Boost from Git, you can use the following:
+```
+set(BOOST_GIT ON)
+add_subdirectory(boost-cmake)
+```
+
 For more advanced configuration, you can override the way to download the sources using [FetchContent_Declare](https://cmake.org/cmake/help/latest/module/FetchContent.html):
 ```
 FetchContent_Declare(

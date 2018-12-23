@@ -13,6 +13,11 @@ strategy:
       imageName: 'ubuntu-16.04'
       BUILD_TARGET: 'Linux'
       BUILD_COMPILER: 'Clang'
+    Linux-Clang-Git:
+      imageName: 'ubuntu-16.04'
+      BUILD_TARGET: 'Linux'
+      BUILD_COMPILER: 'Clang'
+      BUILD_GIT: 'ON'
     Android-arm64:
       imageName: 'ubuntu-16.04'
       BUILD_TARGET: 'Android'
@@ -63,4 +68,5 @@ steps:
     BUILD_COMPILER: $(BUILD_COMPILER)
     BUILD_ARCH: $(BUILD_ARCH)
     BUILD_TOOLCHAIN: $(BUILD_TOOLCHAIN)
+    BUILD_GIT: $(BUILD_GIT)
     CCACHE_DISABLE: 1
