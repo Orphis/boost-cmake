@@ -40,7 +40,7 @@ FetchContent_Declare(
 
 If you have Boost sources already available and want to point to them, you can use the following:
 ```
-set(FETCHCONTENT_SOURCE_DIR_boost /path/to/boost)
+set(FETCHCONTENT_SOURCE_DIR_BOOST /path/to/boost)
 add_subdirectory(boost-cmake)
 ```
 
