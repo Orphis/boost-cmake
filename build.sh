@@ -59,6 +59,10 @@ build_script() {
     mkdir build
     pushd build
 
+    if [[ "$BUILD_GIT" == "ON" ]]; then
+         CMAKE_OPTIONS="${CMAKE_OPTIONS} -DBOOST_GIT=ON"
+    fi
+
     if [[ "$BUILD_TARGET" == "Linux" ]]; then
         if [[ "$BUILD_COMPILER" == "GCC" ]]; then
             CC=gcc-5
@@ -69,21 +73,24 @@ build_script() {
         fi
         cmake .. -GNinja \
                  -DCMAKE_C_COMPILER=$CC \
-                 -DCMAKE_CXX_COMPILER=$CXX
+                 -DCMAKE_CXX_COMPILER=$CXX \
+                 $CMAKE_OPTIONS
     elif [[ "$BUILD_TARGET" == "Android" ]]; then
         cmake .. -GNinja \
                  -DCMAKE_SYSTEM_NAME=Android \
                  -DCMAKE_ANDROID_NDK_TOOLCHAIN_VERSION=clang \
-                 -DCMAKE_ANDROID_ARCH_ABI=${BUILD_ARCH}
+                 -DCMAKE_ANDROID_ARCH_ABI=${BUILD_ARCH} \
+                 $CMAKE_OPTIONS
     elif [[ "$BUILD_TARGET" == "macOS" ]]; then
-        cmake .. -GNinja
+        cmake .. -GNinja $CMAKE_OPTIONS
     elif [[ "$BUILD_TARGET" == "iOS" ]]; then
         cmake .. -GNinja \
-                 -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchains/ios.cmake
+                 -DCMAKE_TOOLCHAIN_FILE=../cmake/Toolchains/ios.cmake \
+                 $CMAKE_OPTIONS
     elif [[ "$BUILD_TARGET" == "Windows" ]]; then
         vcpath=$(vswhere.exe -latest -property installationPath)
         vcscript="\"$vcpath\\VC\\Auxiliary\\Build\\vcvarsall.bat\" $BUILD_TOOLCHAIN"
-        cmd.exe /c "$vcscript & cmake .. -GNinja -DCMAKE_C_COMPILER=cl.exe -DCMAKE_CXX_COMPILER=cl.exe & ninja -v"
+        cmd.exe /c "$vcscript & cmake .. -GNinja -DCMAKE_C_COMPILER=cl.exe -DCMAKE_CXX_COMPILER=cl.exe $CMAKE_OPTIONS & ninja -v"
         exit 0
     fi
 
