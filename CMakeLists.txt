@@ -15,7 +15,9 @@ FetchContent_Declare(
 FetchContent_GetProperties(Boost)
 
 if(NOT Boost_POPULATED)
+  message(STATUS "Fetching Boost")
   FetchContent_Populate(Boost)
+  message(STATUS "Fetching Boost - done")
   set(BOOST_SOURCE ${boost_SOURCE_DIR})
 endif()
 
