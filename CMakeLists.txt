@@ -67,6 +67,7 @@ set(BOOST_LIBS_OPTIONAL
   regex
   serialization
   system
+  stacktrace
   test
   thread
   timer
