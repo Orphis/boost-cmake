@@ -12,6 +12,19 @@ _add_boost_lib(
 )
 
 _add_boost_lib(
+  NAME stacktrace_backtrace
+  SOURCES
+#    ${BOOST_SOURCE}/libs/stacktrace/src/addr2line.cpp
+    ${BOOST_SOURCE}/libs/stacktrace/src/backtrace.cpp
+#    ${BOOST_SOURCE}/libs/stacktrace/src/basic.cpp
+#    ${BOOST_SOURCE}/libs/stacktrace/src/noop.cpp
+#    ${BOOST_SOURCE}/libs/stacktrace/src/windbg.cpp
+#    ${BOOST_SOURCE}/libs/stacktrace/src/windbg_cached.cpp
+  DEFINE_PRIVATE
+    BOOST_STACKTRACE_STATIC_LINK=1
+)
+
+_add_boost_lib(
   NAME stacktrace_basic
   SOURCES
 #    ${BOOST_SOURCE}/libs/stacktrace/src/addr2line.cpp
