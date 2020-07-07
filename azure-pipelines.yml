@@ -30,10 +30,10 @@ strategy:
       BUILD_TARGET: 'Android'
       BUILD_ARCH: 'x86_64'
     macOS:
-      imageName: 'macos-10.13'
+      imageName: 'macos-latest'
       BUILD_TARGET: 'macOS'
     iOS:
-      imageName: 'macos-10.13'
+      imageName: 'macos-latest'
       BUILD_TARGET: 'iOS'
     Windows-v141-amd64:
       imageName: 'vs2017-win2016'
