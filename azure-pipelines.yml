@@ -35,22 +35,6 @@ strategy:
     iOS:
       imageName: 'macos-10.14'
       BUILD_TARGET: 'iOS'
-    Windows-v140-amd64:
-      imageName: 'vs2015-win2012r2'
-      BUILD_TARGET: 'Windows'
-      BUILD_TOOLCHAIN: 'amd64'
-    Windows-v140-x86:
-      imageName: 'vs2015-win2012r2'
-      BUILD_TARGET: 'Windows'
-      BUILD_TOOLCHAIN: 'amd64_x86'
-    Windows-v141-amd64:
-      imageName: 'vs2017-win2016'
-      BUILD_TARGET: 'Windows'
-      BUILD_TOOLCHAIN: 'amd64'
-    Windows-v141-x86:
-      imageName: 'vs2017-win2016'
-      BUILD_TARGET: 'Windows'
-      BUILD_TOOLCHAIN: 'amd64_x86'
     Windows-v142-amd64:
       imageName: 'windows-2019'
       BUILD_TARGET: 'Windows'
