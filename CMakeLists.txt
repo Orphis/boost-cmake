@@ -3,8 +3,8 @@ project(Boost-CMake)
 
 option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
 
-set(BOOST_URL "https://dl.bintray.com/boostorg/release/1.70.0/source/boost_1_70_0.tar.bz2" CACHE STRING "Boost download URL")
-set(BOOST_URL_SHA256 "430ae8354789de4fd19ee52f3b1f739e1fba576f0aded0897c3c2bc00fb38778" CACHE STRING "Boost download URL SHA256 checksum")
+set(BOOST_URL "https://dl.bintray.com/boostorg/release/1.71.0/source/boost_1_71_0.tar.bz2" CACHE STRING "Boost download URL")
+set(BOOST_URL_SHA256 "d73a8da01e8bf8c7eda40b4c84915071a8c8a0df4a6734537ddde4a8580524ee" CACHE STRING "Boost download URL SHA256 checksum")
 
 include(FetchContent)
 FetchContent_Declare(
@@ -15,7 +15,9 @@ FetchContent_Declare(
 FetchContent_GetProperties(Boost)
 
 if(NOT Boost_POPULATED)
+  message(STATUS "Fetching Boost")
   FetchContent_Populate(Boost)
+  message(STATUS "Fetching Boost - done")
   set(BOOST_SOURCE ${boost_SOURCE_DIR})
 endif()
 
