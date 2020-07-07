@@ -2,7 +2,9 @@ _add_boost_lib(
   NAME filesystem
   SOURCES
     ${BOOST_SOURCE}/libs/filesystem/src/codecvt_error_category.cpp
+    ${BOOST_SOURCE}/libs/filesystem/src/exception.cpp
     ${BOOST_SOURCE}/libs/filesystem/src/operations.cpp
+    ${BOOST_SOURCE}/libs/filesystem/src/directory.cpp
     ${BOOST_SOURCE}/libs/filesystem/src/path.cpp
     ${BOOST_SOURCE}/libs/filesystem/src/path_traits.cpp
     ${BOOST_SOURCE}/libs/filesystem/src/portability.cpp
