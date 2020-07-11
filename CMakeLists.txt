@@ -2,23 +2,31 @@ cmake_minimum_required(VERSION 3.12)
 project(Boost-CMake)
 
 option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
+option(BOOST_FETCH_SOURCE "If not set, Boost-CMake will try to find Boost in the BOOST_EXTERNAL_SOURCE path." ON)
 
 set(BOOST_URL "https://dl.bintray.com/boostorg/release/1.73.0/source/boost_1_73_0.tar.bz2" CACHE STRING "Boost download URL")
 set(BOOST_URL_SHA256 "4eb3b8d442b426dc35346235c8733b5ae35ba431690e38c6a8263dce9fcbb402" CACHE STRING "Boost download URL SHA256 checksum")
+set(BOOST_EXTERNAL_SOURCE "" CACHE STRING "Path for an external Boost source.")
 
-include(FetchContent)
-FetchContent_Declare(
-  Boost
-  URL ${BOOST_URL}
-  URL_HASH SHA256=${BOOST_URL_SHA256}
-)
-FetchContent_GetProperties(Boost)
+if (BOOST_FETCH_SOURCE)
+  include(FetchContent)
+  FetchContent_Declare(
+    Boost
+    URL ${BOOST_URL}
+    URL_HASH SHA256=${BOOST_URL_SHA256}
+  )
+  FetchContent_GetProperties(Boost)
 
-if(NOT Boost_POPULATED)
-  message(STATUS "Fetching Boost")
-  FetchContent_Populate(Boost)
-  message(STATUS "Fetching Boost - done")
-  set(BOOST_SOURCE ${boost_SOURCE_DIR})
+  if(NOT Boost_POPULATED)
+    message(STATUS "Fetching Boost")
+    FetchContent_Populate(Boost)
+    message(STATUS "Fetching Boost - done")
+    set(BOOST_SOURCE ${boost_SOURCE_DIR})
+  endif()
+elseif(EXISTS ${BOOST_EXTERNAL_SOURCE})
+  set(BOOST_SOURCE ${BOOST_EXTERNAL_SOURCE})
+else()
+  message(FATAL_ERROR "Boost source code not found! Set the BOOST_SOURCE variable or enable BOOST_FETCH_SOURCE.")
 endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
