@@ -149,6 +149,7 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/log/src/setup/settings_parser.cpp
   DEFINE_PRIVATE
     BOOST_LOG_SETUP_BUILDING_THE_LIB=1
+    BOOST_THREAD_USES_DATETIME=1
   INCLUDE_PRIVATE
     ${BOOST_SOURCE}/libs/log/src
   LINK
