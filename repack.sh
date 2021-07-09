@@ -14,7 +14,7 @@ patch_dir=$(pwd)/patch/${BOOST_VERSION}
 tmp_dir=$(mktemp -d)
 
 echo "Downloading Boost ${BOOST_VERSION}..."
-curl -L "https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION//\./_}.tar.bz2" > ${tmp_dir}/boost_${BOOST_VERSION}.tar.bz2
+curl -L "https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION//\./_}.tar.bz2" > ${tmp_dir}/boost_${BOOST_VERSION}.tar.bz2
 
 mkdir -p ${tmp_dir}/extract
 cd ${tmp_dir}/extract
