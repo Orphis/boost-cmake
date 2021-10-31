@@ -38,3 +38,6 @@ _add_boost_test(
     RUN ${BOOST_SOURCE}/libs/exception/test/errinfos_test.cpp
     RUN ${BOOST_SOURCE}/libs/exception/test/exception_ptr_test.cpp
 )
+
+target_compile_definitions(Boost_exception_test_2-throw_exception_no_exceptions_test PUBLIC BOOST_NO_EXCEPTIONS)
+target_compile_definitions(Boost_exception_test_4-throw_exception_no_both_test PUBLIC BOOST_NO_EXCEPTIONS)

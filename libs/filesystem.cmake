@@ -2,6 +2,8 @@ _add_boost_lib(
   NAME filesystem
   SOURCES
     ${BOOST_SOURCE}/libs/filesystem/src/codecvt_error_category.cpp
+    ${BOOST_SOURCE}/libs/filesystem/src/directory.cpp
+    ${BOOST_SOURCE}/libs/filesystem/src/exception.cpp
     ${BOOST_SOURCE}/libs/filesystem/src/operations.cpp
     ${BOOST_SOURCE}/libs/filesystem/src/path.cpp
     ${BOOST_SOURCE}/libs/filesystem/src/path_traits.cpp
@@ -12,6 +14,10 @@ _add_boost_lib(
   DEFINE_PRIVATE
     BOOST_FILESYSTEM_STATIC_LINK=1
 )
+
+set_target_properties(Boost_filesystem PROPERTIES
+        CXX_STANDARD 20
+        CXX_STANDARD_REQUIRED ON)
 
 _add_boost_test(
   NAME filesystem_test
