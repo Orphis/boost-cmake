@@ -1,7 +1,6 @@
 _add_boost_lib(
   NAME fiber
   SOURCES
-    ${BOOST_SOURCE}/libs/fiber/src/
     ${BOOST_SOURCE}/libs/fiber/src/algo/algorithm.cpp
     ${BOOST_SOURCE}/libs/fiber/src/algo/round_robin.cpp
     ${BOOST_SOURCE}/libs/fiber/src/algo/shared_work.cpp
@@ -17,6 +16,7 @@ _add_boost_lib(
     ${BOOST_SOURCE}/libs/fiber/src/recursive_timed_mutex.cpp
     ${BOOST_SOURCE}/libs/fiber/src/timed_mutex.cpp
     ${BOOST_SOURCE}/libs/fiber/src/scheduler.cpp
+    ${BOOST_SOURCE}/libs/fiber/src/waker.cpp
   DEFINE_PRIVATE
     BOOST_FIBERS_SOURCE=1
   LINK
