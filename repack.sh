@@ -9,17 +9,20 @@ function finish {
 }
 trap finish EXIT
 
+undotted_BOOST_VERSION="${BOOST_VERSION//\./_}"
 out_dir="$(pwd)"
 patch_dir="$(pwd)/patch/${BOOST_VERSION}"
 tmp_dir="$(mktemp -d)"
+extract_dir="${tmp_dir}/extract"
+orig_boost_file="${tmp_dir}/boost_${BOOST_VERSION}.tar.bz2"
 
 echo "Downloading Boost ${BOOST_VERSION}..."
-curl -L "https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION//\./_}.tar.bz2" > "${tmp_dir}/boost_${BOOST_VERSION}.tar.bz2"
+curl -L "https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${undotted_BOOST_VERSION}.tar.bz2" > "$orig_boost_file"
 
-mkdir -p "${tmp_dir}/extract"
-cd "${tmp_dir}/extract"
+mkdir -p "$extract_dir"
+cd "$extract_dir"
 echo "Extracting archive..."
-tar xf "${tmp_dir}/boost_${BOOST_VERSION}.tar.bz2"
+tar xf "$orig_boost_file"
 
 cd boost_*
 
@@ -41,4 +44,4 @@ find . -name "*.jpg" -delete
 
 cd ..
 echo "Recompressing archive..."
-tar cfJ "${out_dir}/boost_${BOOST_VERSION//./_}.tar.xz" boost_*
+tar cfJ "${out_dir}/boost_${undotted_BOOST_VERSION}.tar.xz" boost_*
