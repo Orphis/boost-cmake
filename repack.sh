@@ -5,30 +5,30 @@ set -e
 BOOST_VERSION=1.67.0
 
 function finish {
-  rm -rf ${tmp_dir}
+  rm -rf "${tmp_dir}"
 }
 trap finish EXIT
 
-out_dir=$(pwd)
-patch_dir=$(pwd)/patch/${BOOST_VERSION}
-tmp_dir=$(mktemp -d)
+out_dir="$(pwd)"
+patch_dir="$(pwd)/patch/${BOOST_VERSION}"
+tmp_dir="$(mktemp -d)"
 
 echo "Downloading Boost ${BOOST_VERSION}..."
-curl -L "https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION//\./_}.tar.bz2" > ${tmp_dir}/boost_${BOOST_VERSION}.tar.bz2
+curl -L "https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_VERSION//\./_}.tar.bz2" > "${tmp_dir}/boost_${BOOST_VERSION}.tar.bz2"
 
-mkdir -p ${tmp_dir}/extract
-cd ${tmp_dir}/extract
+mkdir -p "${tmp_dir}/extract"
+cd "${tmp_dir}/extract"
 echo "Extracting archive..."
-tar xf ${tmp_dir}/boost_${BOOST_VERSION}.tar.bz2
+tar xf "${tmp_dir}/boost_${BOOST_VERSION}.tar.bz2"
 
 cd boost_*
 
 if [ -d "${patch_dir}" ]; then
   mkdir patch
-  for f in ${patch_dir}/*.patch; do
+  for f in "${patch_dir}"/*.patch; do
     echo "Applying patch ${f}..."
-    git apply --verbose $f
-    cp $f patch/
+    git apply --verbose "$f"
+    cp "$f" patch/
   done
 fi
 
@@ -41,4 +41,4 @@ find . -name "*.jpg" -delete
 
 cd ..
 echo "Recompressing archive..."
-tar cfJ ${out_dir}/boost_${BOOST_VERSION//./_}.tar.xz boost_*
+tar cfJ "${out_dir}/boost_${BOOST_VERSION//./_}.tar.xz" boost_*
