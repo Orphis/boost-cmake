@@ -48,4 +48,4 @@ find . \
 
 cd ..
 echo "Recompressing archive..."
-tar -cJf "${out_dir}/boost_${undotted_BOOST_VERSION}.tar.xz" boost_*
+tar -I "xz -z9evT0" -cf "${out_dir}/boost_${undotted_BOOST_VERSION}.tar.xz" boost_*
