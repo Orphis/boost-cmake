@@ -15,9 +15,11 @@ _add_boost_lib(
     BOOST_FILESYSTEM_STATIC_LINK=1
 )
 
-set_target_properties(Boost_filesystem PROPERTIES
-        CXX_STANDARD 20
-        CXX_STANDARD_REQUIRED ON)
+set_target_properties(Boost_filesystem PROPERTIES CXX_STANDARD_REQUIRED ON)
+get_target_property(filesystemStandardVersion Boost_filesystem CXX_STANDARD)
+if(${filesystemStandardVersion} LESS 20)
+    target_compile_definitions(Boost_filesystem PUBLIC BOOST_FILESYSTEM_NO_CXX20_ATOMIC_REF)
+endif()
 
 _add_boost_test(
   NAME filesystem_test
