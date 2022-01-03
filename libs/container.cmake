@@ -54,7 +54,6 @@ _add_boost_test(
     RUN ${BOOST_SOURCE}/libs/container/test/pmr_slist_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/pmr_small_vector_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/pmr_stable_vector_test.cpp
-    RUN ${BOOST_SOURCE}/libs/container/test/pmr_static_vector_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/pmr_string_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/pmr_vector_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/polymorphic_allocator_test.cpp
