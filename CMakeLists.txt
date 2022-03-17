@@ -9,8 +9,8 @@ set(BOOST_URL_SHA256 "d73a8da01e8bf8c7eda40b4c84915071a8c8a0df4a6734537ddde4a858
 include(FetchContent)
 FetchContent_Declare(
   Boost
-  URL ${BOOST_URL}
-  URL_HASH SHA256=${BOOST_URL_SHA256}
+  GIT_REPOSITORY https://github.com/boostorg/boost.git
+  GIT_TAG boost-1.78.0
 )
 FetchContent_GetProperties(Boost)
 
