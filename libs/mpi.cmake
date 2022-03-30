@@ -7,22 +7,22 @@ endif()
 _add_boost_lib(
   NAME mpi
   SOURCES
-    ${BOOST_SOURCE}/libs/mpi/src/content_oarchive.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/environment.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/exception.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/graph_communicator.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/group.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/intercommunicator.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/mpi_datatype_cache.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/mpi_datatype_oarchive.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/packed_iarchive.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/packed_oarchive.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/packed_skeleton_iarchive.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/packed_skeleton_oarchive.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/point_to_point.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/request.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/text_skeleton_oarchive.cpp
-    ${BOOST_SOURCE}/libs/mpi/src/timer.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/content_oarchive.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/environment.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/exception.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/graph_communicator.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/group.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/intercommunicator.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/mpi_datatype_cache.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/mpi_datatype_oarchive.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/packed_iarchive.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/packed_oarchive.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/packed_skeleton_iarchive.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/packed_skeleton_oarchive.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/point_to_point.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/request.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/text_skeleton_oarchive.cpp
+    ${boost_SOURCE_DIR}/libs/mpi/src/timer.cpp
   DEFINE_PRIVATE
     BOOST_MPI_SOURCE=1
   LINK

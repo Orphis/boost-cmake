@@ -1,7 +1,7 @@
 _add_boost_lib(
   NAME graph
   SOURCES
-    ${BOOST_SOURCE}/libs/graph/src/graphml.cpp
-    ${BOOST_SOURCE}/libs/graph/src/read_graphviz_new.cpp
+    ${boost_SOURCE_DIR}/libs/graph/src/graphml.cpp
+    ${boost_SOURCE_DIR}/libs/graph/src/read_graphviz_new.cpp
   LINK Boost::regex
 )

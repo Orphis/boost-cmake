@@ -48,15 +48,15 @@ set(math_tr1
 
 foreach(c99src ${math_c99})
   list(APPEND math_srcs
-    ${BOOST_SOURCE}/libs/math/src/tr1/${c99src}.cpp
-    ${BOOST_SOURCE}/libs/math/src/tr1/${c99src}f.cpp
+    ${boost_SOURCE_DIR}/libs/math/src/tr1/${c99src}.cpp
+    ${boost_SOURCE_DIR}/libs/math/src/tr1/${c99src}f.cpp
   )
 endforeach()
 
 foreach(tr1src ${math_tr1})
   list(APPEND math_srcs
-    ${BOOST_SOURCE}/libs/math/src/tr1/${tr1src}.cpp
-    ${BOOST_SOURCE}/libs/math/src/tr1/${tr1src}f.cpp
+    ${boost_SOURCE_DIR}/libs/math/src/tr1/${tr1src}.cpp
+    ${boost_SOURCE_DIR}/libs/math/src/tr1/${tr1src}f.cpp
   )
 endforeach()
 
@@ -65,4 +65,4 @@ _add_boost_lib(
   SOURCES
     ${math_srcs}
 )
-target_include_directories(Boost_math PRIVATE ${BOOST_SOURCE}/libs/math/src/tr1)
+target_include_directories(Boost_math PRIVATE ${boost_SOURCE_DIR}/libs/math/src/tr1)

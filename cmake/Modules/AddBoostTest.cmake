@@ -41,7 +41,7 @@ function(_add_boost_test)
       add_executable(${test_name} ${test_files})
       add_test(NAME ${test_name}
         COMMAND ${test_name}
-        WORKING_DIRECTORY ${BOOST_SOURCE}/status
+        WORKING_DIRECTORY ${boost_SOURCE_DIR}/status
       )
       set_target_properties(${test_name} PROPERTIES
         FOLDER "Boost/Tests"

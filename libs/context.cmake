@@ -17,10 +17,10 @@ if(USE_WINDOWS)
   endif()
 
   set(context_srcs
-    ${BOOST_SOURCE}/libs/context/src/asm/jump_${context_arch}_ms_pe_${context_assembler}.asm
-    ${BOOST_SOURCE}/libs/context/src/asm/make_${context_arch}_ms_pe_${context_assembler}.asm
-    ${BOOST_SOURCE}/libs/context/src/asm/ontop_${context_arch}_ms_pe_${context_assembler}.asm
-    ${BOOST_SOURCE}/libs/context/src/windows/stack_traits.cpp
+    ${boost_SOURCE_DIR}/libs/context/src/asm/jump_${context_arch}_ms_pe_${context_assembler}.asm
+    ${boost_SOURCE_DIR}/libs/context/src/asm/make_${context_arch}_ms_pe_${context_assembler}.asm
+    ${boost_SOURCE_DIR}/libs/context/src/asm/ontop_${context_arch}_ms_pe_${context_assembler}.asm
+    ${boost_SOURCE_DIR}/libs/context/src/windows/stack_traits.cpp
   )
 else()
   # Using combined sources in order to support macOS / iOS universal builds
@@ -29,7 +29,7 @@ else()
     ${CMAKE_CURRENT_LIST_DIR}/context/jump_combined.S
     ${CMAKE_CURRENT_LIST_DIR}/context/make_combined.S
     ${CMAKE_CURRENT_LIST_DIR}/context/ontop_combined.S
-    ${BOOST_SOURCE}/libs/context/src/posix/stack_traits.cpp
+    ${boost_SOURCE_DIR}/libs/context/src/posix/stack_traits.cpp
   )
   enable_language(ASM)
 endif()
@@ -51,10 +51,10 @@ _add_boost_test(
     Boost::context
     Boost::unit_test_framework
   TESTS
-    RUN ${BOOST_SOURCE}/libs/context/test/test_invoke.cpp
-    RUN ${BOOST_SOURCE}/libs/context/test/test_apply.cpp
-    RUN ${BOOST_SOURCE}/libs/context/test/test_fcontext.cpp
-    RUN ${BOOST_SOURCE}/libs/context/test/test_fiber.cpp
-    RUN ${BOOST_SOURCE}/libs/context/test/test_callcc.cpp
-    RUN ${BOOST_SOURCE}/libs/context/test/test_execution_context_v2.cpp
+    RUN ${boost_SOURCE_DIR}/libs/context/test/test_invoke.cpp
+    RUN ${boost_SOURCE_DIR}/libs/context/test/test_apply.cpp
+    RUN ${boost_SOURCE_DIR}/libs/context/test/test_fcontext.cpp
+    RUN ${boost_SOURCE_DIR}/libs/context/test/test_fiber.cpp
+    RUN ${boost_SOURCE_DIR}/libs/context/test/test_callcc.cpp
+    RUN ${boost_SOURCE_DIR}/libs/context/test/test_execution_context_v2.cpp
 )

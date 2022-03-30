@@ -5,8 +5,8 @@ endif()
 _add_boost_lib(
   NAME graph_parallel
   SOURCES
-    ${BOOST_SOURCE}/libs/graph_parallel/src/mpi_process_group.cpp
-    ${BOOST_SOURCE}/libs/graph_parallel/src/tag_allocator.cpp
+    ${boost_SOURCE_DIR}/libs/graph_parallel/src/mpi_process_group.cpp
+    ${boost_SOURCE_DIR}/libs/graph_parallel/src/tag_allocator.cpp
   LINK
     Boost::mpi
 )

@@ -1,30 +1,39 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.16)
 project(Boost-CMake)
 
 option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
 
-set(BOOST_URL "https://boostorg.jfrog.io/artifactory/main/release/1.71.0/source/boost_1_71_0.tar.bz2" CACHE STRING "Boost download URL")
-set(BOOST_URL_SHA256 "d73a8da01e8bf8c7eda40b4c84915071a8c8a0df4a6734537ddde4a8580524ee" CACHE STRING "Boost download URL SHA256 checksum")
+# define boost version and download links
+## If you change `boost version`, need to rewrite `BOOST_URL_SHA256`.
+set(BOOST_VERSION_MAJOR 1)
+set(BOOST_VERSION_MINOR 78)
+set(BOOST_VERSION_PATCH 0)
 
+if(WIN32)
+  set(BOOST_URL
+    "https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION_MAJOR}.${BOOST_VERSION_MINOR}.${BOOST_VERSION_PATCH}/source/boost_${BOOST_VERSION_MAJOR}_${BOOST_VERSION_MINOR}_${BOOST_VERSION_PATCH}.zip"
+    CACHE STRING "Boost download URL")
+  set(BOOST_URL_SHA256 "f22143b5528e081123c3c5ed437e92f648fe69748e95fa6e2bd41484e2986cc3" CACHE STRING "Boost download URL SHA256 checksum")
+else(UNIX OR APPLE)
+  set(BOOST_URL
+    "https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION_MAJOR}.${BOOST_VERSION_MINOR}.${BOOST_VERSION_PATCH}/source/boost_${BOOST_VERSION_MAJOR}_${BOOST_VERSION_MINOR}_${BOOST_VERSION_PATCH}.tar.bz2"
+    CACHE STRING "Boost download URL")
+  set(BOOST_URL_SHA256 "8681f175d4bdb26c52222665793eef08490d7758529330f98d3b29dd0735bccc" CACHE STRING "Boost download URL SHA256 checksum")
+endif()
+
+# fetch contents about Boost sources
 include(FetchContent)
 FetchContent_Declare(
   Boost
-  GIT_REPOSITORY https://github.com/boostorg/boost.git
-  GIT_TAG boost-1.78.0
+  URL ${BOOST_URL}
+  URL_HASH SHA256=${BOOST_URL_SHA256}
 )
-FetchContent_GetProperties(Boost)
-
-if(NOT Boost_POPULATED)
-  message(STATUS "Fetching Boost")
-  FetchContent_Populate(Boost)
-  message(STATUS "Fetching Boost - done")
-  set(BOOST_SOURCE ${boost_SOURCE_DIR})
-endif()
+FetchContent_MakeAvailable(boost)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 include(CheckBoostVersion)
 
-message(STATUS "Boost found: ${BOOST_VERSION} ${BOOST_SOURCE}")
+message(STATUS "Boost found: ${BOOST_VERSION} ${boost_SOURCE_DIR}")
 
 include(StandaloneBuild)
 include(PlatformDetect)
@@ -43,6 +52,8 @@ set(BOOST_LIBS_REQUIRED
   # Header only libs
   header
 )
+# To Do
+# Cannot build some library
 set(BOOST_LIBS_OPTIONAL
   # Compiled libs
   atomic
@@ -81,7 +92,7 @@ endforeach()
 
 foreach(lib ${BOOST_LIBS_OPTIONAL})
   # In case only a subset of modules is available (eg. after using bcp)
-  if(EXISTS "${BOOST_SOURCE}/libs/${lib}")
+  if(EXISTS "${boost_SOURCE_DIR}/libs/${lib}")
     include("libs/${lib}.cmake")
   endif()
 endforeach()
