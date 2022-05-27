@@ -31,8 +31,8 @@ build_install() {
     if [[ "$AGENT_OS" == "Linux" ]]; then
         sudo apt-get install \
             build-essential \
-            g++-11 \
-            clang-12.0 \
+            g++ \
+            clang \
             aria2 \
             ninja-build \
             ccache
@@ -60,11 +60,11 @@ build_script() {
 
     if [[ "$BUILD_TARGET" == "Linux" ]]; then
         if [[ "$BUILD_COMPILER" == "GCC" ]]; then
-            CC=gcc-11
-            CXX=g++-11
+            CC=gcc
+            CXX=g++
         else
-            CC=clang-12.0
-            CXX=clang++-12.0
+            CC=clang
+            CXX=clang
         fi
         cmake .. -GNinja \
                  -DCMAKE_C_COMPILER=$CC \
