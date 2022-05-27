@@ -1,10 +1,15 @@
-cmake_minimum_required(VERSION 3.12)
-project(Boost-CMake)
+cmake_minimum_required(VERSION 3.16...3.23)
 
-option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
+project(Boost-CMake LANGUAGES CXX VERSION 1.79.0)
 
-set(BOOST_URL "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.7z" CACHE STRING "Boost download URL")
-set(BOOST_URL_SHA256 "090cefea470bca990fa3f3ed793d865389426915b37a2a3258524a7258f0790c" CACHE STRING "Boost download URL SHA256 checksum")
+option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" ON)
+
+if(EXISTS "$ENV{HOME}/.cache/CPM/boost_1_79_0")
+  set(FETCHCONTENT_SOURCE_DIR_BOOST  CACHE PATH "Boost source DIR")
+endif()
+
+set(BOOST_URL "https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.bz2" CACHE STRING "Boost download URL")
+set(BOOST_URL_SHA256 "475d589d51a7f8b3ba2ba4eda022b170e562ca3b760ee922c146b6c65856ef39" CACHE STRING "Boost download URL SHA256 checksum")
 
 include(FetchContent)
 FetchContent_Declare(
@@ -12,8 +17,8 @@ FetchContent_Declare(
   URL ${BOOST_URL}
   URL_HASH SHA256=${BOOST_URL_SHA256}
 )
-FetchContent_GetProperties(Boost)
 
+FetchContent_GetProperties(Boost)
 if(NOT Boost_POPULATED)
   message(STATUS "Fetching Boost")
   FetchContent_Populate(Boost)
@@ -91,8 +96,9 @@ if(NOT BOOST_STANDALONE)
   # Compilation options required by all platforms
   target_compile_definitions(Boost::boost INTERFACE
     $<$<CONFIG:Release>:BOOST_DISABLE_ASSERT>
+    BOOST_ASIO_NO_DEPRECATED
     BOOST_SYSTEM_NO_DEPRECATED
-    BOOST_THREAD_VERSION=4
+    BOOST_THREAD_VERSION=5
     BOOST_THREAD_USES_CHRONO
     BOOST_THREAD_PROVIDES_EXECUTORS
   )

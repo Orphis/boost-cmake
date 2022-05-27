@@ -1,4 +1,9 @@
 # Detect Boost version
+
+if(NOT EXISTS "${BOOST_SOURCE}/boost/version.hpp")
+  message(FATAL_ERROR "missing ${BOOST_SOURCE}/boost/version.hpp")
+endif()
+
 file(STRINGS "${BOOST_SOURCE}/boost/version.hpp" boost_version_raw
   REGEX "define BOOST_VERSION "
 )
