@@ -6,27 +6,27 @@
 strategy:
   matrix:
     Linux-GCC:
-      imageName: 'ubuntu-16.04'
+      imageName: 'ubuntu-latest'
       BUILD_TARGET: 'Linux'
       BUILD_COMPILER: 'GCC'
     Linux-Clang:
-      imageName: 'ubuntu-16.04'
+      imageName: 'ubuntu-latest'
       BUILD_TARGET: 'Linux'
       BUILD_COMPILER: 'Clang'
     Android-arm64:
-      imageName: 'ubuntu-16.04'
+      imageName: 'ubuntu-latest'
       BUILD_TARGET: 'Android'
       BUILD_ARCH: 'arm64-v8a'
     Android-arm:
-      imageName: 'ubuntu-16.04'
+      imageName: 'ubuntu-latest'
       BUILD_TARGET: 'Android'
       BUILD_ARCH: 'armeabi-v7a'
     Android-x86:
-      imageName: 'ubuntu-16.04'
+      imageName: 'ubuntu-latest'
       BUILD_TARGET: 'Android'
       BUILD_ARCH: 'x86'
     Android-x86_64:
-      imageName: 'ubuntu-16.04'
+      imageName: 'ubuntu-latest'
       BUILD_TARGET: 'Android'
       BUILD_ARCH: 'x86_64'
     macOS:
