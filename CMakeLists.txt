@@ -2,10 +2,10 @@ cmake_minimum_required(VERSION 3.16...3.23)
 
 project(Boost-CMake LANGUAGES CXX VERSION 1.79.0)
 
-option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" ON)
+option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
 
 if(EXISTS "$ENV{HOME}/.cache/CPM/boost_1_79_0")
-  set(FETCHCONTENT_SOURCE_DIR_BOOST  CACHE PATH "Boost source DIR")
+  set(FETCHCONTENT_SOURCE_DIR_BOOST "$ENV{HOME}/.cache/CPM/boost_1_79_0" CACHE PATH "Boost source DIR")
 endif()
 
 set(BOOST_URL "https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.bz2" CACHE STRING "Boost download URL")
