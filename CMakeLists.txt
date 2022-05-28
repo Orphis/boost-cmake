@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16...3.23)
 
-project(Boost-CMake LANGUAGES CXX VERSION 1.79.0)
+project(Boost-CMake LANGUAGES C CXX VERSION 1.79.0)
 
 option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
 
