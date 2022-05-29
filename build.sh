@@ -1,6 +1,7 @@
 #/usr/bin/env bash
 
-NDK_VER=android-ndk-r18b
+# Latest LTS Version (r23c)
+NDK_VER=android-ndk-r23c
 
 download_extract() {
     aria2c -x 16 $1 -o $2

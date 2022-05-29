@@ -17,14 +17,6 @@ strategy:
       imageName: 'ubuntu-latest'
       BUILD_TARGET: 'Android'
       BUILD_ARCH: 'arm64-v8a'
-    Android-arm:
-      imageName: 'ubuntu-latest'
-      BUILD_TARGET: 'Android'
-      BUILD_ARCH: 'armeabi-v7a'
-    Android-x86:
-      imageName: 'ubuntu-latest'
-      BUILD_TARGET: 'Android'
-      BUILD_ARCH: 'x86'
     Android-x86_64:
       imageName: 'ubuntu-latest'
       BUILD_TARGET: 'Android'
@@ -39,10 +31,10 @@ strategy:
       imageName: 'vs2017-win2016'
       BUILD_TARGET: 'Windows'
       BUILD_TOOLCHAIN: 'amd64'
-    Windows-v141-x86:
-      imageName: 'vs2017-win2016'
+    Windows-v161-amd64:
+      imageName: 'windows-latest'
       BUILD_TARGET: 'Windows'
-      BUILD_TOOLCHAIN: 'amd64_x86'
+      BUILD_TOOLCHAIN: 'amd64'
 
 trigger:
 - master
