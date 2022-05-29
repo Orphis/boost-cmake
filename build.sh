@@ -33,7 +33,7 @@ build_install() {
         sudo apt-get install \
             build-essential \
             g++ \
-            clang \
+            clang-12 \
             aria2 \
             ninja-build \
             ccache
@@ -50,7 +50,7 @@ build_install() {
 
     # Android NDK
     if [[ "$BUILD_TARGET" == "Android" ]]; then
-        download_extract_zip http://dl.google.com/android/repository/${NDK_VER}-linux-x86_64.zip ${NDK_VER}-linux-x86_64.zip
+        download_extract_zip http://dl.google.com/android/repository/${NDK_VER}-linux.zip ${NDK_VER}-linux.zip
         export ANDROID_NDK=$(pwd)/${NDK_VER}
     fi
 }
@@ -64,8 +64,8 @@ build_script() {
             CC=gcc
             CXX=g++
         else
-            CC=clang
-            CXX=clang
+            CC=clang-12
+            CXX=clang++-12
         fi
         cmake .. -GNinja \
                  -DCMAKE_C_COMPILER=$CC \

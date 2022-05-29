@@ -1,5 +1,5 @@
 function(_add_boost_lib)
-  set(options )
+  set(options)
   set(oneValueArgs NAME)
   set(multiValueArgs SOURCES LINK DEFINE DEFINE_PRIVATE CXXFLAGS_PRIVATE INCLUDE_PRIVATE)
   cmake_parse_arguments(BOOSTLIB "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})

@@ -27,11 +27,11 @@ strategy:
     iOS:
       imageName: 'macos-latest'
       BUILD_TARGET: 'iOS'
-    Windows-v141-amd64:
-      imageName: 'vs2017-win2016'
+    Windows-2019-amd64:
+      imageName: 'windows-2019'
       BUILD_TARGET: 'Windows'
       BUILD_TOOLCHAIN: 'amd64'
-    Windows-v161-amd64:
+    Windows-latest-amd64:
       imageName: 'windows-latest'
       BUILD_TARGET: 'Windows'
       BUILD_TOOLCHAIN: 'amd64'
