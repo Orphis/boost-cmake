@@ -1,4 +1,7 @@
-_add_boost_lib(NAME json SOURCES ${BOOST_SOURCE}/libs/json/src/src.cpp LINK Boost::container Boost::system)
+_add_boost_lib(
+  NAME json SOURCES ${BOOST_SOURCE}/libs/json/src/src.cpp DEFINE_PRIVATE BOOST_JSON_STATIC_LINK=1
+  LINK Boost::container Boost::system Boost::boost
+)
 
 file(GLOB_RECURSE BOOST_JSON_TESTS_FILES ${BOOST_SOURCE}/libs/json/test/*.cpp)
 list(FILTER
