@@ -16,6 +16,7 @@ parse:
         NAME: '1'
         RUN: '1'
         DEFINE: '*'
+        INCLUDE: '*'
         LINK: '*'
         TESTS: '*'
 

@@ -60,12 +60,13 @@ set(BOOST_LIBS_OPTIONAL
   fiber
   filesystem
   graph
+  graph_parallel
   iostreams
+  json
   locale
   log
   math
   mpi
-  graph_parallel # depends on mpi, so needs to be put after it
   program_options
   #python # complex module
   random
