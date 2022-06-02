@@ -1,0 +1,195 @@
+# Use this cmake project to build and run the unit tests
+#   $ pip install cmake ninja
+#   $ cmake -B cmake-build -S . -G Ninja
+#   $ cmake --build cmake-build
+#   $ cmake --build cmake-build --target test
+
+cmake_minimum_required(VERSION 3.21...3.23)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+project(Boost VERSION @Boost-CMake_VERSION@ LANGUAGES CXX C)
+
+set(BOOST_SUPERPROJECT_VERSION ${Boost_VERSION})
+set(BOOST_SUPERPROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR})
+
+list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_SOURCE_DIR}/tools/cmake/include)
+
+include(BoostInstall)
+
+option(CMAKE_CXX_EXTENSIONS "Default value for CXX_EXTENSIONS property of targets." NO)
+option(CMAKE_CXX_STANDARD_REQUIRED "The c++ standard is requrired" YES)
+option(CMAKE_SKIP_INSTALL_RULES "do NOT create install targes!" ${PROJECT_IS_TOP_LEVEL})
+
+option(BOOST_ENABLE_MPI "Enable MPI" ${PROJECT_IS_TOP_LEVEL})
+option(BUILD_TESTING "Build ctests" ${PROJECT_IS_TOP_LEVEL})
+
+set(CMAKE_CXX_STANDARD @CMAKE_CXX_STANDARD@ CACHE STRING "The used c++ standard")
+
+# Where to put all the RUNTIME targets when build. (ddl, and exe)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+
+# Define the header-only Boost targets
+add_library(Boost::boost INTERFACE IMPORTED GLOBAL)
+add_library(Boost::headers ALIAS Boost::boost)
+# NOTE: workaround for missing project! CK
+add_library(Boost::numeric_conversion ALIAS Boost::boost)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(Boost::boost INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+target_compile_features(Boost::boost INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
+
+# Disable autolink
+target_compile_definitions(Boost::boost INTERFACE BOOST_ALL_NO_LIB=1)
+
+set(ALL_LIBS_WITH_CMAKE_LIST_FILES
+    libs/accumulators
+    libs/algorithm
+    libs/align
+    libs/any
+    libs/array
+    libs/asio
+    libs/assert
+    libs/assign
+    libs/atomic
+    libs/beast
+    libs/bimap
+    libs/bind
+    libs/callable_traits
+    libs/chrono
+    libs/circular_buffer
+    libs/compatibility
+    libs/compute
+    libs/concept_check
+    libs/config
+    libs/container
+    libs/container_hash
+    libs/context
+    libs/contract
+    libs/conversion
+    libs/convert
+    libs/core
+    libs/coroutine
+    libs/coroutine2
+    libs/crc
+    libs/date_time
+    libs/describe
+    libs/detail
+    libs/dll
+    libs/dynamic_bitset
+    libs/endian
+    libs/exception
+    libs/fiber
+    libs/filesystem
+    libs/flyweight
+    libs/foreach
+    libs/format
+    libs/function
+    libs/function_types
+    libs/functional
+    libs/fusion
+    libs/geometry
+    libs/gil
+    libs/graph
+    libs/graph_parallel
+    libs/hana
+    libs/heap
+    libs/histogram
+    libs/hof
+    libs/icl
+    libs/integer
+    libs/interprocess
+    libs/intrusive
+    libs/io
+    libs/iostreams
+    libs/iterator
+    libs/json
+    libs/lambda
+    libs/lambda2
+    libs/leaf
+    libs/lexical_cast
+    libs/local_function
+    libs/locale
+    libs/lockfree
+    libs/log
+    libs/logic
+    libs/math
+    libs/metaparse
+    libs/move
+    libs/mp11
+    libs/mpi
+    libs/mpl
+    libs/msm
+    libs/multi_array
+    libs/multi_index
+    libs/multiprecision
+    libs/nowide
+    libs/optional
+    libs/outcome
+    libs/parameter
+    libs/parameter_python
+    libs/pfr
+    libs/phoenix
+    libs/poly_collection
+    libs/polygon
+    libs/pool
+    libs/predef
+    libs/preprocessor
+    libs/process
+    libs/program_options
+    libs/property_map
+    libs/property_map_parallel
+    libs/property_tree
+    libs/proto
+    libs/ptr_container
+    libs/python
+    libs/qvm
+    libs/random
+    libs/range
+    libs/ratio
+    libs/rational
+    libs/regex
+    libs/safe_numerics
+    libs/scope_exit
+    libs/serialization
+    libs/signals2
+    libs/smart_ptr
+    libs/sort
+    libs/spirit
+    libs/stacktrace
+    libs/statechart
+    libs/static_assert
+    libs/static_string
+    libs/stl_interfaces
+    libs/system
+    libs/test
+    libs/thread
+    libs/throw_exception
+    libs/timer
+    libs/tokenizer
+    libs/tti
+    libs/tuple
+    libs/type_erasure
+    libs/type_index
+    libs/type_traits
+    libs/typeof
+    libs/units
+    libs/unordered
+    libs/utility
+    libs/uuid
+    libs/variant
+    libs/variant2
+    libs/vmd
+    libs/wave
+    libs/winapi
+    libs/xpressive
+    libs/yap
+)
+
+if(PROJECT_IS_TOP_LEVEL)
+  enable_testing()
+endif()
+
+foreach(_LIB IN LISTS ALL_LIBS_WITH_CMAKE_LIST_FILES)
+  add_subdirectory(${_LIB})
+endforeach()
