@@ -6,6 +6,7 @@ option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalo
 
 if(EXISTS "$ENV{CPM_SOURCE_CACHE}/boost_1_79_0")
   set(FETCHCONTENT_SOURCE_DIR_BOOST "$ENV{HOME}/.cache/CPM/boost_1_79_0" CACHE PATH "Boost source DIR")
+  set(CPM_Boost_SOURCE ${FETCHCONTENT_SOURCE_DIR_BOOST} CACHE PATH "Manual override")
 endif()
 
 set(BOOST_URL "https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.bz2"
@@ -36,8 +37,10 @@ include(PlatformDetect)
 include(AddBoostLib)
 include(AddBoostTest)
 
-# NOTE: only to be there, but not yet used! CK
+# NOTE: Install the missing CMakeList.txt file, but it will not yet used! CK
+#       If the tar achive contains one, it will not overridden.
 configure_file(cmake/CMakeLists.txt.in ${BOOST_SOURCE}/CMakeLists.txt @ONLY)
+configure_file(cmake/Modules/ccache.cmake ${BOOST_SOURCE}/tools/cmake/include/ccache.cmake COPYONLY)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 
