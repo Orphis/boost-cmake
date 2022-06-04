@@ -71,4 +71,9 @@ _add_boost_test(
     RUN ${BOOST_SOURCE}/libs/container/test/unsynchronized_pool_resource_test.cpp
     RUN ${BOOST_SOURCE}/libs/container/test/uses_allocator_test.cpp
     #RUN ${BOOST_SOURCE}/libs/container/test/vector_test.cpp
+    #TODO: rename bcopy with bcopy1 at vector_test.hpp line 235! CK
+    # ./vector_test.cpp:#include "vector_test.hpp"
+    # ./stable_vector_test.cpp:#include "vector_test.hpp"
+    # ./small_vector_test.cpp:#include "vector_test.hpp"
+    # ./deque_test.cpp:#include "vector_test.hpp"
 )

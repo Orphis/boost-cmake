@@ -1,6 +1,7 @@
 #/usr/bin/env bash
 
-NDK_VER=android-ndk-r18b
+# Latest LTS Version (r23c)
+NDK_VER=android-ndk-r23c
 
 download_extract() {
     aria2c -x 16 $1 -o $2
@@ -27,18 +28,17 @@ build_before_install() {
 }
 
 build_install() {
-    # Ubuntu Linux + GCC 4.8
+    # Ubuntu Linux + GCC
     if [[ "$AGENT_OS" == "Linux" ]]; then
         sudo apt-get install \
             build-essential \
-            g++-5 \
-            clang-6.0 \
+            g++ \
+            clang-12 \
             aria2 \
             ninja-build \
             ccache
 
-        download_extract "https://github.com/Kitware/CMake/releases/download/v3.13.2/cmake-3.13.2-Linux-x86_64.tar.gz" cmake-3.13.2-Linux-x86_64.tar.gz
-        export PATH=$(pwd)/cmake-3.13.2-Linux-x86_64/bin:$PATH
+        pip install cmake ninja
     elif [[ "$AGENT_OS" == "Darwin" ]]; then
         brew_install ccache
         brew_install cmake
@@ -50,7 +50,7 @@ build_install() {
 
     # Android NDK
     if [[ "$BUILD_TARGET" == "Android" ]]; then
-        download_extract_zip http://dl.google.com/android/repository/${NDK_VER}-linux-x86_64.zip ${NDK_VER}-linux-x86_64.zip
+        download_extract_zip http://dl.google.com/android/repository/${NDK_VER}-linux.zip ${NDK_VER}-linux.zip
         export ANDROID_NDK=$(pwd)/${NDK_VER}
     fi
 }
@@ -61,11 +61,11 @@ build_script() {
 
     if [[ "$BUILD_TARGET" == "Linux" ]]; then
         if [[ "$BUILD_COMPILER" == "GCC" ]]; then
-            CC=gcc-5
-            CXX=g++-5
+            CC=gcc
+            CXX=g++
         else
-            CC=clang-6.0
-            CXX=clang++-6.0
+            CC=clang-12
+            CXX=clang++-12
         fi
         cmake .. -GNinja \
                  -DCMAKE_C_COMPILER=$CC \

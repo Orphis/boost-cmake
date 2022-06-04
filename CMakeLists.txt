@@ -1,19 +1,25 @@
-cmake_minimum_required(VERSION 3.12)
-project(Boost-CMake)
+cmake_minimum_required(VERSION 3.16...3.23)
+
+project(Boost-CMake LANGUAGES C CXX VERSION 1.79.0)
 
 option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
 
-set(BOOST_URL "https://boostorg.jfrog.io/artifactory/main/release/1.78.0/source/boost_1_78_0.7z" CACHE STRING "Boost download URL")
-set(BOOST_URL_SHA256 "090cefea470bca990fa3f3ed793d865389426915b37a2a3258524a7258f0790c" CACHE STRING "Boost download URL SHA256 checksum")
+if(EXISTS "$ENV{CPM_SOURCE_CACHE}/boost_1_79_0")
+  set(FETCHCONTENT_SOURCE_DIR_BOOST "$ENV{HOME}/.cache/CPM/boost_1_79_0" CACHE PATH "Boost source DIR")
+  set(CPM_Boost_SOURCE ${FETCHCONTENT_SOURCE_DIR_BOOST} CACHE PATH "Manual override")
+endif()
+
+set(BOOST_URL "https://boostorg.jfrog.io/artifactory/main/release/1.79.0/source/boost_1_79_0.tar.bz2"
+    CACHE STRING "Boost download URL"
+)
+set(BOOST_URL_SHA256 "475d589d51a7f8b3ba2ba4eda022b170e562ca3b760ee922c146b6c65856ef39"
+    CACHE STRING "Boost download URL SHA256 checksum"
+)
 
 include(FetchContent)
-FetchContent_Declare(
-  Boost
-  URL ${BOOST_URL}
-  URL_HASH SHA256=${BOOST_URL_SHA256}
-)
-FetchContent_GetProperties(Boost)
+FetchContent_Declare(Boost URL ${BOOST_URL} URL_HASH SHA256=${BOOST_URL_SHA256})
 
+FetchContent_GetProperties(Boost)
 if(NOT Boost_POPULATED)
   message(STATUS "Fetching Boost")
   FetchContent_Populate(Boost)
@@ -31,6 +37,11 @@ include(PlatformDetect)
 include(AddBoostLib)
 include(AddBoostTest)
 
+# NOTE: Install the missing CMakeList.txt file, but it will not yet used! CK
+#       If the tar achive contains one, it will not overridden.
+configure_file(cmake/CMakeLists.txt.in ${BOOST_SOURCE}/CMakeLists.txt @ONLY)
+configure_file(cmake/Modules/ccache.cmake ${BOOST_SOURCE}/tools/cmake/include/ccache.cmake COPYONLY)
+
 set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 
 if(USE_ANDROID)
@@ -39,40 +50,40 @@ if(USE_ANDROID)
   set(CMAKE_ASM_COMPILER_TARGET "${CMAKE_CXX_COMPILER_TARGET}")
 endif()
 
-set(BOOST_LIBS_REQUIRED
-  # Header only libs
-  header
+set(BOOST_LIBS_REQUIRED # Header only libs
+    header
 )
 set(BOOST_LIBS_OPTIONAL
-  # Compiled libs
-  atomic
-  chrono
-  container
-  context
-  coroutine
-  date_time
-  exception
-  fiber
-  filesystem
-  graph
-  iostreams
-  locale
-  log
-  math
-  mpi
-  graph_parallel # depends on mpi, so needs to be put after it
-  program_options
-  #python # complex module
-  random
-  regex
-  serialization
-  system
-  test
-  thread
-  timer
-  type_erasure
-  wave
-  CACHE STRING "Boost libs to be compiled"
+    # Compiled libs
+    atomic
+    chrono
+    container
+    context
+    coroutine
+    date_time
+    exception
+    fiber
+    filesystem
+    graph
+    graph_parallel
+    iostreams
+    json
+    locale
+    log
+    math
+    mpi
+    program_options
+    #python # complex module
+    random
+    regex
+    serialization
+    system
+    test
+    thread
+    timer
+    type_erasure
+    wave
+    CACHE STRING "Boost libs to be compiled"
 )
 
 foreach(lib ${BOOST_LIBS_REQUIRED})
@@ -89,12 +100,14 @@ endforeach()
 # TODO: Move those to option() calls in the right file
 if(NOT BOOST_STANDALONE)
   # Compilation options required by all platforms
-  target_compile_definitions(Boost::boost INTERFACE
-    $<$<CONFIG:Release>:BOOST_DISABLE_ASSERT>
-    BOOST_SYSTEM_NO_DEPRECATED
-    BOOST_THREAD_VERSION=4
-    BOOST_THREAD_USES_CHRONO
-    BOOST_THREAD_PROVIDES_EXECUTORS
+  target_compile_definitions(
+    Boost::boost
+    INTERFACE $<$<CONFIG:Release>:BOOST_DISABLE_ASSERT>
+              BOOST_ASIO_NO_DEPRECATED
+              BOOST_SYSTEM_NO_DEPRECATED
+              BOOST_THREAD_VERSION=5
+              BOOST_THREAD_USES_CHRONO
+              BOOST_THREAD_PROVIDES_EXECUTORS
   )
 endif()
 

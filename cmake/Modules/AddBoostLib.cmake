@@ -1,9 +1,9 @@
 function(_add_boost_lib)
-  set(options )
+  set(options)
   set(oneValueArgs NAME)
   set(multiValueArgs SOURCES LINK DEFINE DEFINE_PRIVATE CXXFLAGS_PRIVATE INCLUDE_PRIVATE)
-  cmake_parse_arguments(BOOSTLIB "${options}" "${oneValueArgs}"
-                        "${multiValueArgs}" ${ARGN})
+  cmake_parse_arguments(BOOSTLIB "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
   add_library(Boost_${BOOSTLIB_NAME} STATIC ${BOOSTLIB_SOURCES})
   add_library(Boost::${BOOSTLIB_NAME} ALIAS Boost_${BOOSTLIB_NAME})
   set_target_properties(Boost_${BOOSTLIB_NAME} PROPERTIES
