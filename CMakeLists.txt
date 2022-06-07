@@ -97,8 +97,11 @@ foreach(lib ${BOOST_LIBS_OPTIONAL})
   endif()
 endforeach()
 
+
 # TODO: Move those to option() calls in the right file
 if(NOT BOOST_STANDALONE)
+  find_package(Threads)
+
   # Compilation options required by all platforms
   target_compile_definitions(
     Boost::boost
@@ -109,6 +112,8 @@ if(NOT BOOST_STANDALONE)
               BOOST_THREAD_USES_CHRONO
               BOOST_THREAD_PROVIDES_EXECUTORS
   )
+  add_library(Boost::asio ALIAS Boost::boost)
+  target_link_libraries(Boost::boost INTERFACE Threads::Threads)
 endif()
 
 if(USE_ANDROID)
