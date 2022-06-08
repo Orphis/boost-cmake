@@ -5,7 +5,7 @@ project(Boost-CMake LANGUAGES C CXX VERSION 1.79.0)
 option(BOOST_DISABLE_TESTS "Do not build test targets, even if building standalone" OFF)
 
 if(EXISTS "$ENV{CPM_SOURCE_CACHE}/boost_1_79_0")
-  set(FETCHCONTENT_SOURCE_DIR_BOOST "$ENV{HOME}/.cache/CPM/boost_1_79_0" CACHE PATH "Boost source DIR")
+  set(FETCHCONTENT_SOURCE_DIR_BOOST "$ENV{CPM_SOURCE_CACHE}/boost_1_79_0" CACHE PATH "Boost source DIR")
   set(CPM_Boost_SOURCE ${FETCHCONTENT_SOURCE_DIR_BOOST} CACHE PATH "Manual override")
 endif()
 
@@ -96,7 +96,6 @@ foreach(lib ${BOOST_LIBS_OPTIONAL})
     include("libs/${lib}.cmake")
   endif()
 endforeach()
-
 
 # TODO: Move those to option() calls in the right file
 if(NOT BOOST_STANDALONE)
