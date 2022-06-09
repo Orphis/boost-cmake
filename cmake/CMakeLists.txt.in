@@ -1,0 +1,76 @@
+# Copyright 2019, 2021, 2022 Peter Dimov
+# Distributed under the Boost Software License, Version 1.0.
+# See accompanying file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt
+#
+# Use this cmake project to build and run the unit tests
+#   $ pip install cmake ninja
+#   $ cmake -B cmake-build -S . -G Ninja -Wdev --log-level=DEBUG
+#   $ cmake --build cmake-build
+#   $ cmake --build cmake-build --target test
+
+cmake_minimum_required(VERSION 3.21...3.23)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+find_program(CACHE_BINARY NAMES ccache sccache)
+if(CACHE_BINARY)
+  message(STATUS "${CACHE_BINARY} found and enabled")
+  set(CMAKE_CXX_COMPILER_LAUNCHER ${CACHE_BINARY} CACHE FILEPATH "CXX compiler cache used")
+  set(CMAKE_C_COMPILER_LAUNCHER ${CACHE_BINARY} CACHE FILEPATH "C compiler cache used")
+endif()
+
+# The default build type must be set before project()
+if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR AND NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
+  set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
+  set_property(
+    CACHE CMAKE_BUILD_TYPE
+    PROPERTY STRINGS
+             "Debug"
+             "Release"
+             "MinSizeRel"
+             "RelWithDebInfo"
+  )
+endif()
+
+project(Boost VERSION @Boost-CMake_VERSION@ LANGUAGES CXX C)
+
+set(BOOST_SUPERPROJECT_VERSION ${PROJECT_VERSION})
+set(BOOST_SUPERPROJECT_SOURCE_DIR ${PROJECT_SOURCE_DIR})
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/tools/cmake/include)
+
+option(CMAKE_CXX_EXTENSIONS "Default value for CXX_EXTENSIONS property of targets." NO)
+option(CMAKE_CXX_STANDARD_REQUIRED "The c++ standard is requrired" YES)
+option(BUILD_SHARED_LIBS "Build shared libraries" ${PROJECT_IS_TOP_LEVEL})
+
+### see tools/cmake/include/BoostRoot.cmake
+#XXX option(CMAKE_SKIP_INSTALL_RULES "do NOT create install targes!" ${PROJECT_IS_TOP_LEVEL})
+# option(BOOST_ENABLE_MPI "Enable MPI" ${PROJECT_IS_TOP_LEVEL})
+# option(BUILD_TESTING "Enable testing" ${PROJECT_IS_TOP_LEVEL})
+
+set(CMAKE_CXX_STANDARD @CMAKE_CXX_STANDARD@ CACHE STRING "The used c++ standard")
+
+### Workaround to compile some boost libs. CK
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+
+# NOTE: prepared, but not used! CK
+### Define the header-only Boost targets
+# add_library(Boost::boost SYSTEM INTERFACE IMPORTED GLOBAL)
+# add_library(Boost::headers ALIAS Boost::boost)
+# target_include_directories(Boost::boost INTERFACE ${CMAKE_CURRENT_SOURCE_DIR})
+# target_compile_features(Boost::boost INTERFACE cxx_std_${CMAKE_CXX_STANDARD})
+# target_compile_definitions(
+#   Boost::boost
+#   INTERFACE $<$<CONFIG:Release>:BOOST_DISABLE_ASSERT>
+#             BOOST_ASIO_NO_DEPRECATED
+#             BOOST_SYSTEM_NO_DEPRECATED
+#             BOOST_THREAD_VERSION=5
+#             BOOST_THREAD_USES_CHRONO
+#             BOOST_THREAD_PROVIDES_EXECUTORS
+# )
+
+if(PROJECT_IS_TOP_LEVEL)
+  enable_testing()
+endif()
+
+include(BoostRoot)

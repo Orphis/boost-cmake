@@ -21,7 +21,7 @@ target_link_libraries(lib_using_header_only PUBLIC Boost::boost)
 
 ## Configuration
 
-Boost will automatically be downloaded from GitHub as a minified archive created with the `repack.sh` script.
+Boost will automatically be downloaded from https://boostorg.jfrog.io/artifactory !
 
 If that is not acceptable to you, you can use an alternate Boost version, apply custom patches or just mirror the current archive in your internal network like so:
 ```

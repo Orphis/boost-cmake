@@ -1,0 +1,39 @@
+parse:
+  additional_commands:
+    _add_boost_lib:
+      # flags:
+      kwargs:
+        NAME: '1'
+        CXXFLAGS_PRIVATE: '*'
+        DEFINE: '*'
+        DEFINE_PRIVATE: '*'
+        INCLUDE_PRIVATE: '*'
+        LINK: '*'
+        SOURCES: '*'
+    _add_boost_test:
+      # flags:
+      kwargs:
+        NAME: '1'
+        RUN: '1'
+        DEFINE: '*'
+        INCLUDE: '*'
+        LINK: '*'
+        TESTS: '*'
+
+format:
+  dangle_parens: true
+  line_ending: unix
+  line_width: 123
+  max_lines_hwrap: 3
+  max_pargs_hwrap: 4
+  max_rows_cmdline: 8
+  max_subgroups_hwrap: 4
+  min_prefix_chars: 8
+  separate_ctrl_name_with_space: false
+  separate_fn_name_with_space: false
+  tab_size: 2
+
+markup:
+  bullet_char: "*"
+  enum_char: .
+  enable_markup: false
